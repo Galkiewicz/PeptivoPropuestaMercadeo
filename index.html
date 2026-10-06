@@ -1,0 +1,1234 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PEPTIVO · Propuesta de mercadeo</title>
+<style>
+/* ============================================================
+   PEPTIVO — Propuesta de sistema de mercadeo en Instagram y TikTok
+   Presentación en orden inverso: del resultado al brief.
+   Estructura: un <section class="slide"> por lámina.
+   data-line="frente" | "bambalinas"   → indicador de las dos líneas
+   data-act="…"                        → nombre del acto en la barra
+   ============================================================ */
+@font-face{font-family:Italiana;src:url(assets/fonts/Italiana-Regular.ttf) format("truetype");font-display:swap}
+@font-face{font-family:Jost;src:url("assets/fonts/Jost[wght].ttf") format("truetype");font-weight:100 900;font-display:swap}
+@font-face{font-family:Plex;src:url(assets/fonts/IBMPlexMono-Regular.ttf) format("truetype");font-weight:400;font-display:swap}
+@font-face{font-family:Plex;src:url(assets/fonts/IBMPlexMono-Medium.ttf) format("truetype");font-weight:500;font-display:swap}
+
+:root{
+  /* superficie y tinta */
+  --warm:#F7F4EE; --paper:#FBFAF6; --ink:#2A2826; --soft:#5A554D; --line:rgba(42,40,38,.14);
+  --petrol:#0D1D21; --beige:#EADFC8; --gold:#D8B82C;
+  /* familias tonales (tricolor colombiano en pastel) */
+  --butter:#F4EACB; --butter-2:#E9D9A8; --sky:#DFE7EC; --sky-2:#C4D3DD;
+  --coral:#F2E0D9; --coral-2:#E5C7BC; --pearl:#EEECE8; --pearl-2:#DCD9D3; --white:#F8F5EF; --white-2:#ECE6DB;
+  /* tipografía */
+  --f-display:Italiana,"Didot","Bodoni 72",Georgia,serif;
+  --f-body:Jost,"Futura","Avenir Next","Century Gothic",sans-serif;
+  --f-mono:Plex,ui-monospace,"SF Mono",Menlo,monospace;
+  --f-label:Corm,"Trajan Pro",Georgia,serif;
+  --gutter:clamp(16px,5vw,88px);
+  --spin:24s;
+}
+*{box-sizing:border-box}
+html{scroll-snap-type:y mandatory;scroll-behavior:smooth}
+html,body{margin:0;background:var(--warm);color:var(--ink);font-family:var(--f-body);-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:1px solid currentColor;outline-offset:4px}
+
+/* ---------------- barra superior ---------------- */
+.bar{position:fixed;inset:0 0 auto 0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:1rem;
+  padding:.65rem var(--gutter);background:rgba(13,29,33,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);color:var(--beige)}
+.bar img{height:34px;width:auto}
+.lines{display:flex;gap:.35rem;font:500 .66rem/1 var(--f-mono);letter-spacing:.24em;text-transform:uppercase}
+.lines span{padding:.55rem .8rem;border:1px solid rgba(234,223,200,.25);color:rgba(234,223,200,.55);transition:all .5s ease}
+.lines span.on{background:var(--beige);color:var(--petrol);border-color:var(--beige)}
+.meta-bar{display:flex;align-items:center;gap:1.2rem;font:500 .66rem/1 var(--f-mono);letter-spacing:.2em;text-transform:uppercase;color:rgba(234,223,200,.8)}
+.meta-bar b{font-weight:500;color:var(--beige)}
+.progress{position:fixed;left:0;right:0;bottom:0;height:3px;z-index:50;background:rgba(42,40,38,.08)}
+.progress i{display:block;height:100%;width:0;background:var(--gold);transition:width .4s ease}
+@media (max-width:760px){.meta-bar .act{display:none}.lines span{padding:.5rem .55rem;letter-spacing:.14em}.bar img{height:26px}}
+
+/* ---------------- lámina ---------------- */
+.slide{position:relative;min-height:100svh;scroll-snap-align:start;padding:calc(64px + clamp(2rem,5vw,4rem)) var(--gutter) clamp(2.5rem,5vw,4rem);
+  display:flex;flex-direction:column;justify-content:center;gap:clamp(1.5rem,3vw,2.5rem);overflow:hidden}
+.slide.dark{background:var(--petrol);color:var(--beige)}
+.slide.butter{background:linear-gradient(180deg,var(--butter-2),var(--butter) 60%,#FBF6E4)}
+.slide.sky{background:linear-gradient(180deg,var(--sky-2),var(--sky) 60%,#EEF3F6)}
+.slide.coral{background:linear-gradient(180deg,var(--coral-2),var(--coral) 60%,#F8EEEA)}
+.slide.pearl{background:linear-gradient(180deg,var(--pearl-2),var(--pearl) 60%,#F6F5F2)}
+.inner{width:100%;max-width:1320px;margin:0 auto;display:flex;flex-direction:column;gap:clamp(1.4rem,3vw,2.4rem)}
+.split{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(1.5rem,4vw,4rem);align-items:center}
+.split.rev{grid-template-columns:minmax(0,7fr) minmax(0,5fr)}
+@media (max-width:900px){.split,.split.rev{grid-template-columns:minmax(0,1fr)}}
+
+/* tipografía de lámina */
+.tag{margin:0;font:500 .7rem/1.3 var(--f-mono);letter-spacing:.28em;text-transform:uppercase;color:var(--soft)}
+.dark .tag{color:rgba(234,223,200,.7)}
+.h1{margin:0;font:400 clamp(2.6rem,6vw,5.6rem)/1.02 var(--f-display);letter-spacing:.01em;text-wrap:balance}
+.h2{margin:0;font:400 clamp(2rem,4.2vw,3.8rem)/1.05 var(--f-display);text-wrap:balance}
+.lead{margin:0;max-width:52ch;font:300 clamp(1rem,1.3vw,1.15rem)/1.6 var(--f-body);color:var(--soft)}
+.dark .lead{color:rgba(234,223,200,.82)}
+.mono{font-family:var(--f-mono)}
+.small{font:400 .74rem/1.5 var(--f-mono);letter-spacing:.06em;color:var(--soft)}
+.dark .small{color:rgba(234,223,200,.7)}
+.ph{background:rgba(216,184,44,.18);padding:0 .3em;font-family:var(--f-mono);font-size:.9em}
+.dark .ph{background:rgba(216,184,44,.25)}
+.legend{font:500 .58rem/1 var(--f-mono);letter-spacing:.22em;text-transform:uppercase;opacity:.8}
+
+/* ---------------- 00 portada ---------------- */
+.cover{background:var(--petrol);color:var(--beige);justify-content:flex-end}
+.cover .logo{width:min(360px,60vw)}
+.cover .title{margin:0;max-width:30ch;font:300 clamp(1.3rem,2.4vw,2rem)/1.35 var(--f-body);color:var(--beige)}
+.cover .rows{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;padding-top:1.4rem;border-top:1px solid rgba(234,223,200,.2)}
+.cover .rows div{display:flex;flex-direction:column;gap:.4rem}
+.cover .rows div>span{font:500 .66rem/1 var(--f-mono);letter-spacing:.24em;text-transform:uppercase;color:rgba(234,223,200,.6)}
+.cover .rows b{font:400 .95rem/1.3 var(--f-body);font-weight:400}
+.reverse-note{display:flex;align-items:center;gap:.8rem;font:500 .7rem/1 var(--f-mono);letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+.reverse-note svg{width:28px;height:14px}
+
+/* ---------------- teléfono ---------------- */
+.phone{position:relative;width:min(300px,78vw);aspect-ratio:9/19;border-radius:42px;background:#121212;padding:10px;box-shadow:0 40px 80px rgba(40,30,20,.22);margin:0 auto}
+.screen{position:relative;width:100%;height:100%;border-radius:33px;overflow:hidden;background:#FAFAFA}
+.feed{position:absolute;left:0;right:0;top:0;animation:feedScroll 14s cubic-bezier(.45,0,.2,1) infinite}
+@keyframes feedScroll{0%{transform:translateY(0)}38%{transform:translateY(-63%)}46%,92%{transform:translateY(-66.5%)}100%{transform:translateY(0)}}
+.post{padding:10px 0}
+.post .who{display:flex;align-items:center;gap:8px;padding:0 12px 8px}
+.post .who b{width:24px;height:24px;border-radius:50%;background:#DDD;display:block}
+.post .who i{display:block;width:90px;height:7px;border-radius:4px;background:#DDD}
+.tile{position:relative;aspect-ratio:4/5;overflow:hidden;background:#EEE}
+.tile img{width:100%;height:100%;object-fit:cover}
+.n1{background:linear-gradient(135deg,#E9B8A0,#B9867E 55%,#7E6A80)}
+.n2{background:radial-gradient(circle at 30% 30%,#9FC3CC 0 22%,transparent 23%),radial-gradient(circle at 70% 65%,#E6B98A 0 26%,transparent 27%),linear-gradient(160deg,#F2EFD9,#D9A0A6)}
+.n3{background:repeating-linear-gradient(45deg,#5D6B7C 0 22px,#C58A80 22px 44px,#D9A97E 44px 66px,#E8D29A 66px 88px)}
+.n4{background:linear-gradient(200deg,#A9B9A3,#E7E3D3)}
+.stop{outline:2px solid var(--gold);outline-offset:-2px}
+.thumb{position:absolute;right:10px;bottom:10px;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.85);display:grid;place-items:center;font:500 .55rem var(--f-mono);color:#333;animation:thumb 14s ease infinite}
+@keyframes thumb{0%,40%{opacity:0;transform:scale(.6)}46%,90%{opacity:1;transform:scale(1)}100%{opacity:0}}
+
+/* pasos del recorrido */
+.steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.2rem;counter-reset:s}
+.steps li{counter-increment:s;display:grid;grid-template-columns:3rem 1fr;align-items:baseline;gap:.6rem;padding:.75rem 0;border-bottom:1px solid var(--line)}
+.steps li::before{content:counter(s,decimal-leading-zero);font:500 .72rem var(--f-mono);letter-spacing:.2em;color:var(--soft)}
+.steps b{font:400 1.35rem/1.2 var(--f-display);font-weight:400}
+.steps li div>span{display:block;font:300 .92rem/1.5 var(--f-body);color:var(--soft)}
+
+/* ---------------- 02 feed del perfil ---------------- */
+.profile{padding:14px 12px 10px;display:flex;flex-direction:column;gap:8px;background:#fff}
+.profile .row{display:flex;align-items:center;gap:10px}
+.profile .av{width:46px;height:46px;border-radius:50%;background:var(--petrol);display:grid;place-items:center;overflow:hidden}
+.profile .av img{width:34px}
+.profile .nm{font:600 .78rem var(--f-body)}
+.profile .bio{font:400 .62rem/1.4 var(--f-body);color:#444}
+.grid9{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:#fff}
+.grid9 .g{position:relative;aspect-ratio:4/5;overflow:hidden}
+.grid9 .g img{width:100%;height:100%;object-fit:cover}
+.grid9 .g em{position:absolute;left:5px;top:5px;font:500 .45rem/1 var(--f-mono);letter-spacing:.1em;font-style:normal;background:rgba(13,29,33,.8);color:var(--beige);padding:3px 4px}
+.dlg{background:var(--petrol);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:var(--beige)}
+.wave{display:flex;align-items:center;gap:2px;height:30%}
+.wave i{display:block;width:3px;border-radius:2px;background:var(--gold);animation:wave 1.4s ease-in-out infinite}
+@keyframes wave{0%,100%{height:20%}50%{height:100%}}
+.formats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}
+.fmt{display:flex;flex-direction:column;gap:.5rem;padding:1.2rem;border-top:2px solid var(--ink);background:rgba(255,255,255,.4)}
+.fmt h3{margin:0;font:400 1.6rem/1 var(--f-display)}
+.fmt .fn{font:500 .66rem/1 var(--f-mono);letter-spacing:.24em;text-transform:uppercase;color:var(--soft)}
+.fmt p{margin:0;font:300 .92rem/1.5 var(--f-body);color:var(--soft)}
+@media (max-width:560px){.formats{grid-template-columns:1fr}}
+
+/* ---------------- 03 ficha 9:16 ---------------- */
+.story{position:relative;width:min(320px,80vw);aspect-ratio:9/16;overflow:hidden;margin:0 auto;background:var(--sky);box-shadow:0 30px 70px rgba(40,50,60,.2)}
+.story > img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.story .top{position:absolute;left:0;right:0;top:4%;display:flex;justify-content:center}
+.story .top img{width:30%}
+.story .bottom{position:absolute;left:6%;right:6%;bottom:4%;display:flex;flex-direction:column;gap:.45rem;padding:.9rem;background:rgba(251,250,246,.86);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);color:#1F2C35}
+.story .pname{font:400 1.4rem/1 var(--f-display);letter-spacing:.06em}
+.story .spec{font:500 .6rem/1.4 var(--f-mono);letter-spacing:.14em}
+.story .price{display:flex;align-items:baseline;gap:.6rem;font-variant-numeric:tabular-nums}
+.story .price s{font:400 .72rem var(--f-mono);opacity:.6}
+.story .price b{font:500 1rem var(--f-mono)}
+.story .price em{font:500 .56rem var(--f-mono);font-style:normal;letter-spacing:.14em;background:var(--petrol);color:var(--beige);padding:3px 5px}
+.story .cta{display:block;text-align:center;padding:.6rem;border:1px solid #1F2C35;font:500 .6rem/1 var(--f-mono);letter-spacing:.24em;text-transform:uppercase}
+.anat{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.2rem 1.6rem}
+.anat li{display:grid;grid-template-columns:2rem 1fr;gap:.4rem;padding:.7rem 0;border-bottom:1px solid var(--line)}
+.anat li>span{font:500 .7rem var(--f-mono);color:var(--soft)}
+.anat b{font:500 .95rem/1.3 var(--f-body)}
+.anat p{margin:.2rem 0 0;font:300 .86rem/1.45 var(--f-body);color:var(--soft)}
+@media (max-width:560px){.anat{grid-template-columns:1fr}}
+
+/* ---------------- 04 navegador con la web ---------------- */
+.browser{width:min(100%,calc((100svh - 420px) * 1.79));margin:0 auto;border-radius:12px;overflow:hidden;background:#fff;box-shadow:0 40px 90px rgba(40,30,20,.18);border:1px solid var(--line)}
+.browser .chrome{display:flex;align-items:center;gap:.5rem;padding:.55rem .8rem;background:#EFEDE8}
+.browser .chrome i{width:10px;height:10px;border-radius:50%;background:#D6D2CA;display:block}
+.browser .chrome span{margin-left:.6rem;flex:1;padding:.3rem .7rem;border-radius:6px;background:#fff;font:400 .7rem var(--f-mono);color:#777}
+.wnav{display:flex;justify-content:space-between;align-items:center;padding:.6rem 1.2rem;background:rgba(13,29,33,.9);color:var(--beige);font:500 .58rem var(--f-mono);letter-spacing:.2em}
+.wnav img{height:20px}
+.hero-art{position:relative;width:100%;aspect-ratio:1024/572;overflow:hidden;container-type:inline-size}
+.hero-art .img{position:absolute;inset:0;transform-origin:68% 72%;animation:breathe 28s ease-in-out infinite alternate}
+.hero-art .plate{width:100%;height:100%}
+.h-glow{position:absolute;left:44%;top:56%;width:20%;height:40%;background:radial-gradient(closest-side,rgba(255,222,160,.34),rgba(255,222,160,0));mix-blend-mode:screen;animation:glowLoop 14s ease-in-out infinite}
+.h-flame{position:absolute;left:50.586%;top:69.231%;width:7.031%;height:14.685%;transform-origin:50% 96%;animation:flameLoop 14s ease-in-out infinite}
+.h-label{position:absolute;left:59.863%;top:60.315%;width:9.668%;height:23.252%;overflow:hidden;background:#FAF9F6;container-type:inline-size}
+.h-strip{display:flex;height:100%;width:600cqw;transform:translateX(0);animation:hturn var(--spin) linear infinite}
+.h-face{flex:none;width:100cqw;height:100%;max-width:none;object-fit:fill}
+.h-back{flex:none;width:200cqw;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7cqw;font:500 6.2cqw/1.3 var(--f-mono);letter-spacing:.16em;color:#3a3a3a}
+.h-back i{display:block;width:62cqw;height:13cqw;background:repeating-linear-gradient(90deg,#222 0 1.2cqw,transparent 1.2cqw 2.6cqw,#222 2.6cqw 3.2cqw,transparent 3.2cqw 5.4cqw)}
+.h-shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(120,80,20,.40) 0%,rgba(150,110,50,.14) 9%,rgba(255,240,210,0) 22%,rgba(255,255,255,.26) 33%,rgba(255,255,255,0) 45%,rgba(40,30,20,.12) 88%,rgba(40,30,20,.34) 100%)}
+.h-mol{position:absolute;left:60.352%;top:17.483%;width:38.867%;animation:molFloat 9s ease-in-out infinite alternate,molCycle var(--spin) ease-in-out infinite}
+.hero-copy{position:absolute;left:5%;top:50%;translate:0 -50%;width:40%;display:flex;flex-direction:column;gap:2cqw;color:#3F3418}
+.hero-copy small{font:500 1.05cqw/1.2 var(--f-mono);letter-spacing:.3em;text-transform:uppercase}
+.hero-copy strong{font:400 6cqw/1 var(--f-display);font-weight:400;letter-spacing:.12em}
+.hero-copy span{font:300 1.3cqw/1.6 var(--f-body);letter-spacing:.3em;text-transform:uppercase}
+.hero-copy em{align-self:flex-start;font:500 1cqw/1 var(--f-mono);font-style:normal;letter-spacing:.3em;text-transform:uppercase;border:1px solid #3F3418;padding:1.2cqw 2cqw}
+.hero-art .ro{position:absolute;right:0;bottom:2%;width:50%;text-align:center;color:#3F3418;font-size:.8cqw}
+@keyframes breathe{from{scale:1}to{scale:1.035}}
+@keyframes molFloat{from{translate:0 0}to{translate:0 -6px}}
+@keyframes molCycle{0%,58%{opacity:1;scale:1}66%{opacity:0;scale:1.02}76%{opacity:0;scale:.97}88%,100%{opacity:1;scale:1}}
+@keyframes hturn{from{transform:translateX(0)}to{transform:translateX(-300cqw)}}
+@keyframes glowLoop{0%,48%{opacity:.85}52%{opacity:1}57%{opacity:.55}60%{opacity:.8}63%{opacity:.5}69%{opacity:1}78%,100%{opacity:.85}}
+@keyframes flameLoop{0%{transform:skewX(0) scaleY(1)}8%{transform:skewX(1.4deg) scaleY(1.03)}16%{transform:skewX(-1deg) scaleY(.98)}24%{transform:skewX(1.2deg) scaleY(1.02)}32%{transform:skewX(-.8deg) scaleY(.99)}40%{transform:skewX(.6deg) scaleY(1.02)}48%{transform:skewX(-.5deg) scaleY(1)}54%{transform:skewX(4deg) scaleY(.95)}57%{transform:skewX(9deg) scaleY(.86)}60%{transform:skewX(3deg) scaleY(.93)}63%{transform:skewX(11deg) scaleY(.82)}66%{transform:skewX(5deg) scaleY(.9)}69%{transform:skewX(-3deg) scaleY(1.06)}73%{transform:skewX(2deg) scaleY(.97)}78%{transform:skewX(-1.2deg) scaleY(1.03)}85%{transform:skewX(.8deg) scaleY(.99)}92%{transform:skewX(-.6deg) scaleY(1.01)}100%{transform:skewX(0) scaleY(1)}}
+.sitemap{display:flex;flex-wrap:wrap;gap:.5rem}
+.sitemap span{font:500 .66rem/1 var(--f-mono);letter-spacing:.18em;text-transform:uppercase;padding:.55rem .7rem;border:1px solid var(--line)}
+
+/* ---------------- 05 deconstrucción ---------------- */
+.explode{width:min(100%,1120px);margin:0 auto;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));grid-auto-rows:minmax(0,auto);gap:clamp(.5rem,1.2vw,1rem)}
+.piece{position:relative;overflow:hidden;background:#ddd}
+.piece img{width:100%;height:100%;object-fit:cover}
+.piece code{position:absolute;left:6px;bottom:6px;font:500 .55rem/1 var(--f-mono);letter-spacing:.12em;background:rgba(251,250,246,.9);color:var(--ink);padding:4px 5px}
+.p-hero{grid-column:span 4;aspect-ratio:1024/572}
+.p-pur{grid-column:span 2;aspect-ratio:1/1}
+.p-c{grid-column:span 1;aspect-ratio:3/4}
+.p-c img{object-position:center 62%}
+.p-sq{grid-column:span 1;aspect-ratio:3/4}
+@media (max-width:760px){.explode{grid-template-columns:repeat(3,minmax(0,1fr))}.p-hero{grid-column:span 3}.p-pur{grid-column:span 3;aspect-ratio:16/9}}
+@supports (animation-timeline: view()){
+  .piece{animation:pieceIn linear both;animation-timeline:view();animation-range:entry 0% cover 40%}
+  @keyframes pieceIn{from{transform:translate(var(--dx,0),var(--dy,0)) scale(.85);opacity:.2}to{transform:none;opacity:1}}
+}
+
+/* ---------------- 06 matriz de artes finales ---------------- */
+.matrix{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(.6rem,1.2vw,1rem)}
+.theme{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line)}
+.theme .sw{height:clamp(90px,12vw,150px);position:relative;overflow:hidden}
+.theme .sw img{width:100%;height:100%;object-fit:cover;object-position:center 60%}
+.theme .hd{padding:.8rem .9rem .5rem;display:flex;flex-direction:column;gap:.25rem}
+.theme .hd b{font:400 1.4rem/1 var(--f-display);font-weight:400}
+.theme .hd span{font:500 .6rem/1.3 var(--f-mono);letter-spacing:.16em;text-transform:uppercase;color:var(--soft)}
+.theme ul{list-style:none;margin:0;padding:.2rem .9rem .9rem;display:flex;flex-direction:column}
+.theme li{display:flex;justify-content:space-between;gap:.5rem;padding:.45rem 0;border-top:1px solid var(--line);font:400 .74rem/1.3 var(--f-mono)}
+.theme li em{font-style:normal;color:var(--soft)}
+@media (max-width:1000px){.matrix{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.matrix{grid-template-columns:minmax(0,1fr)}}
+
+/* ---------------- 07 carrusel ---------------- */
+.carousel{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(.6rem,1.5vw,1.2rem)}
+.frame{display:flex;flex-direction:column;gap:.7rem}
+.frame .card{position:relative;aspect-ratio:4/5;overflow:hidden;background:var(--coral);box-shadow:0 20px 50px rgba(80,50,40,.14)}
+.frame .card > img{width:100%;height:100%;object-fit:cover;object-position:center 55%}
+.frame .num{font:500 .7rem var(--f-mono);letter-spacing:.24em;text-transform:uppercase;color:var(--soft)}
+.frame .num b{font:400 1.3rem var(--f-display);letter-spacing:0;color:var(--ink);margin-right:.5rem}
+.datacard{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;gap:.6rem;padding:9%;color:#40231B}
+.datacard .t{font:400 clamp(1.4rem,2.6vw,2.2rem)/1 var(--f-display)}
+.datacard dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:.45rem 1rem;font:400 clamp(.62rem,.9vw,.78rem)/1.3 var(--f-mono)}
+.datacard dt{letter-spacing:.14em;text-transform:uppercase;opacity:.7}
+.datacard dd{margin:0}
+.datacard .foot{position:absolute;left:0;right:0;bottom:4%;text-align:center}
+.pricecard{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.7rem;text-align:center;color:#40231B;padding:8%}
+.pricecard s{font:400 .8rem var(--f-mono);opacity:.6}
+.pricecard b{font:500 clamp(1.2rem,2.2vw,1.8rem) var(--f-mono);font-variant-numeric:tabular-nums}
+.pricecard em{font:500 .6rem var(--f-mono);font-style:normal;letter-spacing:.16em;background:var(--petrol);color:var(--beige);padding:4px 7px}
+.pricecard .cta{margin-top:.4rem;padding:.65rem 1rem;border:1px solid #40231B;font:500 .6rem/1 var(--f-mono);letter-spacing:.24em;text-transform:uppercase}
+@media (max-width:640px){.carousel{grid-template-columns:minmax(0,1fr)}}
+
+/* ---------------- 08 diagrama solos/juntos ---------------- */
+.flow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(.6rem,1.4vw,1rem);position:relative}
+.node{display:flex;flex-direction:column;gap:.35rem;padding:1rem;background:rgba(255,255,255,.55);border:1px solid var(--line)}
+.node b{font:400 1.4rem/1 var(--f-display);font-weight:400}
+.node span{font:500 .6rem/1.3 var(--f-mono);letter-spacing:.18em;text-transform:uppercase;color:var(--soft)}
+.node p{margin:0;font:300 .86rem/1.45 var(--f-body);color:var(--soft)}
+.merge{display:flex;flex-direction:column;align-items:center;gap:.4rem}
+.merge svg{width:100%;height:56px}
+.merge svg path{fill:none;stroke:var(--ink);stroke-width:1;opacity:.5}
+.goal{align-self:center;display:flex;gap:1rem;align-items:center;padding:1rem 1.4rem;background:var(--petrol);color:var(--beige)}
+.goal b{font:400 1.6rem/1 var(--f-display);font-weight:400}
+.goal span{font:500 .62rem/1.4 var(--f-mono);letter-spacing:.18em;text-transform:uppercase;opacity:.8}
+.contact-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}
+@media (max-width:820px){.flow{grid-template-columns:repeat(2,minmax(0,1fr))}.merge svg{display:none}.contact-row{grid-template-columns:minmax(0,1fr)}}
+
+/* ---------------- 09 rebobinar ---------------- */
+.rewind{align-items:center;text-align:center}
+.rewind .big{font:400 clamp(3rem,10vw,9rem)/1 var(--f-display);margin:0}
+.rew-line{display:flex;align-items:center;gap:1rem;width:min(900px,100%);font:500 .66rem/1 var(--f-mono);letter-spacing:.2em;text-transform:uppercase}
+.rew-line .track{flex:1;height:1px;background:rgba(234,223,200,.35);position:relative}
+.rew-line .track i{position:absolute;right:0;top:-4px;width:9px;height:9px;border-radius:50%;background:var(--gold);animation:rew 4s cubic-bezier(.6,0,.2,1) infinite}
+@keyframes rew{0%{right:0}80%,100%{right:calc(100% - 9px)}}
+
+/* ---------------- 10 embudo ---------------- */
+.funnel{display:flex;flex-direction:column;gap:6px;align-items:center}
+.fstep{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:1rem;padding:.9rem 1.2rem;background:var(--petrol);color:var(--beige)}
+.fstep b{font:400 1.3rem/1 var(--f-display);font-weight:400}
+.fstep span{font:500 .62rem/1.4 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;opacity:.85;text-align:right}
+.fstep:nth-child(1){width:100%;background:#2E4247}.fstep:nth-child(2){width:86%;background:#24373C}.fstep:nth-child(3){width:72%;background:#1A2C31}.fstep:nth-child(4){width:58%;background:var(--petrol)}
+.why{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.why li{padding:.8rem 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:2.4rem 1fr;gap:.5rem}
+.why li span{font:500 .7rem var(--f-mono);color:var(--soft)}
+.why b{font:500 .98rem/1.35 var(--f-body)}
+.why p{margin:.2rem 0 0;font:300 .88rem/1.5 var(--f-body);color:var(--soft)}
+@media (max-width:600px){.fstep{width:100%!important;grid-template-columns:minmax(0,1fr)}.fstep span{text-align:left}}
+
+/* ---------------- 11 concepto ---------------- */
+.etable{width:100%;border-collapse:collapse;font:400 .82rem/1.3 var(--f-mono)}
+.etable th{text-align:left;font:500 .62rem/1 var(--f-mono);letter-spacing:.2em;text-transform:uppercase;color:var(--soft);padding:.6rem .5rem;border-bottom:1px solid var(--ink)}
+.etable td{padding:.75rem .5rem;border-bottom:1px solid var(--line);vertical-align:middle}
+.etable .chip{display:inline-block;width:2.2rem;height:1.1rem;vertical-align:middle;margin-right:.5rem;border:1px solid var(--line)}
+.scroll-x{overflow-x:auto}
+.rule2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}
+.rule2 div{padding:1.2rem;border:1px solid var(--line);display:flex;flex-direction:column;gap:.4rem}
+.rule2 b{font:400 1.5rem/1.1 var(--f-display);font-weight:400}
+.rule2 p{margin:0;font:300 .9rem/1.5 var(--f-body);color:var(--soft)}
+@media (max-width:600px){.rule2{grid-template-columns:minmax(0,1fr)}}
+
+/* ---------------- 12 manual ---------------- */
+.palette{display:grid;grid-template-columns:2fr repeat(6,minmax(0,1fr));gap:8px;height:clamp(150px,22vw,240px)}
+.palette div{display:flex;flex-direction:column;justify-content:flex-end;padding:.5rem;font:500 .55rem/1.3 var(--f-mono);letter-spacing:.06em;border:1px solid var(--line)}
+.types{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}
+.types div{border-top:1px solid var(--ink);padding-top:.8rem;display:flex;flex-direction:column;gap:.4rem}
+.types .aa{font-size:clamp(3rem,6vw,5rem);line-height:1}
+.rules{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.6rem}
+.rules span{font:500 .62rem/1.4 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;padding:.7rem;border:1px solid var(--line)}
+.rules .no{color:#8E3A2E;border-color:rgba(142,58,46,.3)}
+@media (max-width:800px){.palette{grid-template-columns:repeat(4,minmax(0,1fr));height:auto}.palette div{height:90px}.types,.rules{grid-template-columns:minmax(0,1fr)}}
+
+/* ---------------- 13 brief ---------------- */
+.brief{align-items:center;text-align:center;background:var(--paper)}
+.brief blockquote{margin:0;font:400 clamp(2.4rem,7vw,6.4rem)/1.05 var(--f-display);text-wrap:balance}
+.brief .sheet{width:min(520px,100%);text-align:left;padding:1.6rem;border:1px solid var(--line);background:#fff;font:400 .78rem/1.8 var(--f-mono)}
+.brief .sheet b{font-weight:500}
+
+/* ---------------- 14 investigación ---------------- */
+.cards4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1rem}
+.cards4 div{display:flex;flex-direction:column;gap:.5rem;padding:1.1rem;border:1px solid rgba(234,223,200,.22)}
+.cards4 b{font:400 1.4rem/1.1 var(--f-display);font-weight:400}
+.cards4 p{margin:0;font:300 .88rem/1.5 var(--f-body);color:rgba(234,223,200,.8)}
+.cards4 span{font:500 .6rem/1.3 var(--f-mono);letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+@media (max-width:900px){.cards4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.cards4{grid-template-columns:minmax(0,1fr)}}
+
+/* ---------------- 15 volumen ---------------- */
+.kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}
+.kpi{display:flex;flex-direction:column;gap:.3rem;padding-top:1rem;border-top:1px solid var(--ink)}
+.kpi b{font:400 clamp(3rem,7vw,5.6rem)/1 var(--f-display);font-weight:400;font-variant-numeric:tabular-nums}
+.kpi span{font:500 .66rem/1.4 var(--f-mono);letter-spacing:.18em;text-transform:uppercase;color:var(--soft)}
+.kpi.test b{color:#8A6F12}
+@media (max-width:600px){.kpis{grid-template-columns:minmax(0,1fr)}}
+
+/* ---------------- 16 cronograma quincenal ---------------- */
+.timeline{position:relative;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:4px}
+.period{display:flex;flex-direction:column;gap:.4rem;min-width:0}
+.period .bar2{height:46px;display:flex;align-items:center;justify-content:center;font:500 .62rem/1 var(--f-mono);letter-spacing:.1em;color:var(--ink)}
+.period .pay{display:flex;align-items:center;gap:.35rem;font:500 .55rem/1 var(--f-mono);letter-spacing:.08em;color:var(--soft)}
+.period .pay::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--gold);flex:none}
+.period .days{font:400 .55rem/1 var(--f-mono);color:var(--soft)}
+.ph-research{background:var(--sky-2)}.ph-prod20{background:var(--butter-2)}.ph-test{background:var(--coral-2)}.ph-prod80{background:#D9C46E}.ph-live{background:var(--pearl-2)}
+.phases{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:.8rem}
+.phases div{display:flex;flex-direction:column;gap:.35rem;padding-top:.6rem;border-top:6px solid}
+.phases b{font:500 .82rem/1.3 var(--f-body)}
+.phases p{margin:0;font:300 .82rem/1.45 var(--f-body);color:var(--soft)}
+@media (max-width:900px){.timeline{grid-template-columns:repeat(6,minmax(0,1fr))}.phases{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:480px){.timeline{grid-template-columns:repeat(3,minmax(0,1fr))}.phases{grid-template-columns:minmax(0,1fr)}}
+
+/* ---------------- 17 calculadora de medios ---------------- */
+.calc{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(1.2rem,3vw,3rem);align-items:start}
+.inputs{display:flex;flex-direction:column;gap:1rem}
+.inputs label{display:flex;flex-direction:column;gap:.35rem;font:500 .64rem/1.3 var(--f-mono);letter-spacing:.16em;text-transform:uppercase;color:var(--soft)}
+.inputs .val{font:500 .9rem var(--f-mono);letter-spacing:0;color:var(--ink);text-transform:none}
+.inputs input[type=range]{width:100%;accent-color:var(--petrol);min-height:28px}
+.outs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.outs div{background:var(--warm);padding:1rem;display:flex;flex-direction:column;gap:.25rem}
+.outs b{font:500 clamp(1.3rem,2.4vw,2rem)/1.1 var(--f-mono);font-variant-numeric:tabular-nums}
+.outs span{font:500 .6rem/1.3 var(--f-mono);letter-spacing:.16em;text-transform:uppercase;color:var(--soft)}
+.warn{padding:1rem 1.2rem;background:var(--petrol);color:var(--beige);font:300 .9rem/1.5 var(--f-body)}
+.warn b{font:500 .64rem/1 var(--f-mono);letter-spacing:.2em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:.4rem}
+@media (max-width:860px){.calc{grid-template-columns:minmax(0,1fr)}}
+
+/* ---------------- 19 fases ---------------- */
+.gates{display:flex;align-items:stretch;gap:0;overflow-x:auto;padding-bottom:.5rem}
+.gate{flex:1 0 150px;display:flex;flex-direction:column;gap:.4rem;padding:1rem;border:1px solid var(--line);background:rgba(255,255,255,.5);position:relative}
+.gate+.gate{margin-left:28px}
+.gate+.gate::before{content:"→";position:absolute;left:-22px;top:50%;translate:0 -50%;font:400 1rem var(--f-mono);color:var(--soft)}
+.gate b{font:400 1.3rem/1 var(--f-display);font-weight:400}
+.gate span{font:500 .58rem/1.3 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--soft)}
+.gate .dot{width:100%;height:4px}
+.criteria{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}
+.criteria div{padding:1rem;border-top:1px solid var(--ink);display:flex;flex-direction:column;gap:.3rem}
+.criteria b{font:500 .9rem/1.3 var(--f-body)}
+.criteria p{margin:0;font:300 .86rem/1.45 var(--f-body);color:var(--soft)}
+@media (max-width:700px){.criteria{grid-template-columns:minmax(0,1fr)}}
+
+/* ---------------- 20 negociación ---------------- */
+.offer{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}
+.offer div{display:flex;flex-direction:column;gap:.6rem;padding:1.3rem;border:1px solid rgba(234,223,200,.25)}
+.offer div.main{background:var(--beige);color:var(--petrol);border-color:var(--beige)}
+.offer b{font:400 1.6rem/1.1 var(--f-display);font-weight:400}
+.offer span{font:500 .6rem/1.3 var(--f-mono);letter-spacing:.18em;text-transform:uppercase;opacity:.75}
+.offer ul{margin:0;padding-left:1rem;font:300 .88rem/1.55 var(--f-body)}
+@media (max-width:820px){.offer{grid-template-columns:minmax(0,1fr)}}
+
+/* ---------------- 21 cierre ---------------- */
+.close{align-items:center;text-align:center}
+.close .logo{width:min(300px,60vw)}
+.close .contact{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;width:min(860px,100%);text-align:left}
+.close .contact div{padding:1rem;border:1px solid rgba(234,223,200,.25);display:flex;flex-direction:column;gap:.35rem}
+.close .contact div>span{font:500 .6rem/1 var(--f-mono);letter-spacing:.2em;text-transform:uppercase;opacity:.7}
+.close .contact b{font:400 .95rem/1.3 var(--f-body);font-weight:400;word-break:break-word}
+.links{display:flex;flex-wrap:wrap;justify-content:center;gap:.5rem 1.4rem;font:400 .72rem/1.5 var(--f-mono)}
+.links a{color:rgba(234,223,200,.85)}
+@media (max-width:700px){.close .contact{grid-template-columns:minmax(0,1fr)}}
+
+
+/* ---------------- web navegable dentro del navegador ---------------- */
+.wview{position:relative;aspect-ratio:1024/572;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;scroll-behavior:smooth;container-type:inline-size;scrollbar-width:thin;scrollbar-color:rgba(13,29,33,.35) transparent}
+.wview:focus-visible{outline:2px solid var(--gold);outline-offset:-2px}
+.wpage{display:flex;flex-direction:column;background:#F7F4EE;color:#2A2826}
+.w-sec{padding:6cqw 6cqw;display:flex;flex-direction:column;gap:3cqw}
+.w-head{display:flex;flex-direction:column;gap:1.2cqw;max-width:62cqw}
+.w-eye{font:500 1cqw/1.2 var(--f-mono);letter-spacing:.3em;text-transform:uppercase;color:#5A554D}
+.w-h{margin:0;font:400 4.2cqw/1.05 var(--f-display)}
+.w-p{margin:0;font:300 1.35cqw/1.6 var(--f-body);color:#5A554D;max-width:48cqw}
+.w-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:1.4cqw}
+.w-card{display:flex;flex-direction:column;gap:1cqw;text-decoration:none;color:inherit}
+.w-img{position:relative;aspect-ratio:203/434;overflow:hidden}
+.w-img img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.w-card:hover .w-img img{transform:translateY(-4%) scale(1.04)}
+.w-meta{display:flex;flex-direction:column;gap:.4cqw}
+.w-meta b{font:400 1.7cqw/1 var(--f-display);font-weight:400;letter-spacing:.08em}
+.w-meta span{font:400 .95cqw/1 var(--f-mono);letter-spacing:.1em;color:#5A554D}
+.w-ro{font:500 .9cqw/1 var(--f-mono);letter-spacing:.2em;text-transform:uppercase;color:#5A554D}
+.w-pur{position:relative;aspect-ratio:1024/572;overflow:hidden;background:#DCE5EE}
+.w-pur img{width:100%;height:100%;object-fit:cover}
+.w-pcopy{position:absolute;left:6cqw;top:50%;translate:0 -50%;width:38cqw;display:flex;flex-direction:column;gap:1.6cqw;color:#1F2C35}
+.w-pcopy .w-eye{color:#3D4E5B}
+.w-pcopy dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:1cqw 2.4cqw;padding-top:1.6cqw;border-top:1px solid rgba(31,44,53,.25);font:400 1.1cqw/1.3 var(--f-mono)}
+.w-pcopy dt{letter-spacing:.2em;text-transform:uppercase;color:#3D4E5B}
+.w-pcopy dd{margin:0}
+.w-trace{background:linear-gradient(180deg,#E5C7BC,#F2E0D9 70%)}
+.w-trace .w-eye,.w-trace .w-p{color:#62423A}
+.w-trace .w-h{color:#40231B}
+.w-steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1.4cqw;counter-reset:w}
+.w-steps li{counter-increment:w;display:flex;flex-direction:column;gap:.6cqw;padding-top:1.4cqw;border-top:1px solid rgba(64,35,27,.35);color:#40231B}
+.w-steps li::before{content:counter(w,decimal-leading-zero);font:500 .9cqw var(--f-mono);letter-spacing:.2em;opacity:.7}
+.w-steps b{font:400 2cqw/1 var(--f-display);font-weight:400}
+.w-steps span{font:400 1cqw/1.3 var(--f-mono);letter-spacing:.1em}
+.w-ro-band{padding:6cqw;display:flex;flex-direction:column;gap:1.6cqw;align-items:flex-start;background:#F8F5EF;border-top:1px solid rgba(42,40,38,.1)}
+.w-foot{padding:6cqw;display:flex;flex-direction:column;align-items:center;gap:1.6cqw;text-align:center;background:#0D1D21;color:#EADFC8}
+.w-foot img{width:22cqw}
+.w-foot strong{font:400 2.8cqw/1 var(--f-display);font-weight:400;letter-spacing:.06em}
+.w-btn{font:500 1cqw/1 var(--f-mono);letter-spacing:.3em;text-transform:uppercase;border:1px solid #EADFC8;padding:1.2cqw 2.4cqw}
+.w-foot small{font:400 .85cqw/1.4 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;opacity:.7}
+.scroll-hint{position:absolute;right:2cqw;bottom:2cqw;z-index:8;display:flex;align-items:center;gap:.8cqw;font:500 .85cqw/1 var(--f-mono);letter-spacing:.2em;text-transform:uppercase;color:#3F3418;background:rgba(251,246,228,.8);padding:.8cqw 1.2cqw;animation:hintBob 2.4s ease-in-out infinite}
+@keyframes hintBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-.5cqw)}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+@media print{html{scroll-snap-type:none}.bar,.progress{display:none}.slide{page-break-after:always;min-height:auto}}
+
+/* =================== v2 · estructura nueva =================== */
+html{scroll-snap-type:none}
+html[lang="es"] .en{display:none!important}
+html[lang="en"] .es{display:none!important}
+.langsw{display:inline-flex;gap:.2rem;align-items:center;font:500 .7rem/1 var(--f-mono);letter-spacing:.2em}
+.langsw button{all:unset;cursor:pointer;min-width:44px;min-height:40px;display:inline-flex;align-items:center;justify-content:center;color:rgba(234,223,200,.55)}
+.langsw button[aria-pressed="true"]{color:var(--beige);text-decoration:underline;text-underline-offset:.45em}
+.langsw button:focus-visible{outline:1px solid var(--gold);outline-offset:2px}
+.langsw span{color:rgba(234,223,200,.35)}
+.cover .langsw{font-size:.82rem}
+.cover .lang-row{display:flex;align-items:center;gap:1rem;font:500 .66rem/1 var(--f-mono);letter-spacing:.24em;text-transform:uppercase;color:rgba(234,223,200,.6)}
+
+/* intro / investigación / estilo / estrategia */
+.lead-xl{margin:0;max-width:44ch;font:300 clamp(1.1rem,1.6vw,1.4rem)/1.55 var(--f-body);color:var(--soft)}
+.dark .lead-xl{color:rgba(234,223,200,.85)}
+.stats{display:flex;flex-wrap:wrap;gap:2.4rem;padding-top:1.4rem;border-top:1px solid var(--line)}
+.stats div{display:flex;flex-direction:column;gap:.3rem}
+.stats b{font:400 clamp(2.4rem,4.4vw,3.8rem)/1 var(--f-display);font-weight:400}
+.stats div>span{font:500 .64rem/1.3 var(--f-mono);letter-spacing:.2em;text-transform:uppercase;color:var(--soft)}
+.cols2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(1rem,3vw,2.4rem)}
+.panel{display:flex;flex-direction:column;gap:.8rem;padding:1.4rem;border-top:2px solid var(--ink);background:rgba(255,255,255,.45)}
+.panel h3{margin:0;font:400 1.8rem/1.1 var(--f-display)}
+.panel ul{margin:0;padding-left:1.1rem;display:flex;flex-direction:column;gap:.5rem;font:300 .98rem/1.5 var(--f-body);color:var(--soft)}
+.verdict{margin:0;padding:1.2rem 1.4rem;background:var(--petrol);color:var(--beige);font:400 clamp(1.4rem,2.6vw,2.2rem)/1.2 var(--f-display)}
+.rules3{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;counter-reset:r}
+.rules3 li{counter-increment:r;display:flex;flex-direction:column;gap:.5rem;padding-top:1rem;border-top:1px solid var(--ink)}
+.rules3 li::before{content:counter(r,decimal-leading-zero);font:500 .7rem var(--f-mono);letter-spacing:.2em;color:var(--soft)}
+.rules3 b{font:400 1.5rem/1.15 var(--f-display);font-weight:400}
+.rules3 li>span{font:300 .92rem/1.5 var(--f-body);color:var(--soft)}
+.imgcard{position:relative;overflow:hidden;box-shadow:0 30px 70px rgba(40,30,20,.16)}
+.imgcard img{width:100%;height:100%;object-fit:cover}
+.imgcard .legend{position:absolute;left:0;right:0;bottom:10px;text-align:center;color:#2A2826}
+.pillars{display:grid;grid-template-columns:minmax(0,1fr);gap:.6rem}
+.pillars div{display:grid!important;grid-template-columns:6rem 11rem 1fr;align-items:baseline;gap:1rem}
+@media (max-width:1100px){.pillars div{grid-template-columns:minmax(0,1fr)}}
+.pillars div{display:flex;flex-direction:column;gap:.45rem;padding:1.1rem;background:rgba(255,255,255,.5);border:1px solid var(--line)}
+.pillars>div>span{font:500 .62rem/1 var(--f-mono);letter-spacing:.22em;text-transform:uppercase;color:var(--soft)}
+.pillars b{font:400 1.45rem/1.1 var(--f-display);font-weight:400}
+.pillars p{margin:0;font:300 .9rem/1.5 var(--f-body);color:var(--soft)}
+@media (max-width:820px){.cols2,.rules3,.pillars{grid-template-columns:minmax(0,1fr)}}
+
+/* bloque con video fijo (01–03) */
+.pinned{position:relative;background:var(--warm)}
+.pin-bg{position:sticky;top:0;height:100svh;overflow:hidden;z-index:0}
+.pin-full{position:absolute;top:64px;left:0;height:calc(100% - 64px);width:100%;display:block;object-fit:contain;object-position:50% 50%;background:var(--warm)}
+.pin-m,.pin-m-cap{display:none}
+.pin-legend{position:absolute;left:var(--gutter);bottom:1.2rem;color:var(--petrol);z-index:3;background:var(--warm);padding:.45rem .7rem}
+.pin-steps{position:relative;z-index:2;margin-top:-100svh}
+.pin-step{min-height:100svh;display:flex;align-items:center;padding:calc(64px + 1.6rem) var(--gutter) 2rem}
+.pin-step .col{width:min(30vw,460px);display:flex;flex-direction:column;gap:1.1rem;color:var(--petrol);background:var(--warm);padding:1.6rem 1.8rem}
+.pinned .tag,.pinned .steps li::before,.pinned .anat li>span,.pinned .themes3>div>span{color:var(--petrol)}
+.pinned .steps li div>span,.pinned .themes3 p,.pinned .anat p,.pinned .lead{color:#3a4a4e}
+.pinned .steps li,.pinned .themes3>div,.pinned .anat li{border-bottom-color:rgba(13,29,33,.22)}
+.pinned .themes3>div{grid-template-columns:6.2rem 1fr}
+.pinned .anat{grid-template-columns:minmax(0,1fr);gap:0}
+.pinned .anat li{padding:.45rem 0}
+.pinned .steps li{padding:.55rem 0}
+.pin-dots{position:absolute;z-index:3;right:calc(var(--gutter) / 2);top:50%;translate:0 -50%;display:flex;flex-direction:column;gap:.6rem}
+.pin-dots i{width:6px;height:6px;border-radius:50%;background:rgba(42,40,38,.25);transition:background .4s}
+.pin-dots i.on{background:var(--ink)}
+.themes3{display:flex;flex-direction:column;gap:.2rem}
+.themes3>div{display:grid;grid-template-columns:7.5rem 1fr;gap:.8rem;padding:.75rem 0;border-bottom:1px solid var(--line)}
+.themes3>div>span{font:500 .62rem/1.4 var(--f-mono);letter-spacing:.2em;text-transform:uppercase;color:var(--soft)}
+.themes3 b{font:400 1.25rem/1.2 var(--f-display);font-weight:400}
+.themes3 p{margin:.2rem 0 0;font:300 .88rem/1.45 var(--f-body);color:var(--soft)}
+@media (max-width:820px){
+  .pin-bg,.pin-legend{display:none}
+  .pin-steps{margin-top:0}
+  .pin-step{min-height:auto;padding:calc(64px + 2rem) var(--gutter) 2.5rem}
+  .pin-step .col{width:100%;background:transparent;padding:0}
+  .pin-m-cap{display:block}
+  .pin-m{display:block;width:calc(100% + 2 * var(--gutter));margin:0 calc(-1 * var(--gutter));aspect-ratio:16/9;object-fit:cover;background:#E7B8A6}
+  .pin-cap{display:block;margin-top:-.6rem}
+  .pin-dots{display:none}
+}
+
+/* temas con mockup de celular y video */
+.theme-slide .split{align-items:center}
+.vphone{position:relative;width:min(320px,78vw);aspect-ratio:9/19.3;border-radius:44px;background:#121212;padding:10px;box-shadow:0 40px 80px rgba(40,30,20,.22);margin:0 auto}
+.vphone .screen{background:#000}
+.vphone video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.vphone .replay{all:unset;position:absolute;left:50%;top:50%;translate:-50% -50%;z-index:4;display:none;align-items:center;gap:.5rem;padding:.8rem 1.1rem;border-radius:999px;background:rgba(13,29,33,.85);color:var(--beige);font:500 .66rem/1 var(--f-mono);letter-spacing:.2em;text-transform:uppercase;cursor:pointer}
+.vphone.ended .replay{display:inline-flex}
+.vphone .replay:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.vphone .notch{position:absolute;top:10px;left:50%;translate:-50% 0;width:34%;height:22px;border-radius:0 0 14px 14px;background:#121212;z-index:2}
+.sound{position:absolute;right:14px;bottom:14px;z-index:3;min-width:44px;min-height:44px;border:0;border-radius:22px;padding:0 .9rem;background:rgba(13,29,33,.78);color:var(--beige);font:500 .6rem/1 var(--f-mono);letter-spacing:.16em;text-transform:uppercase;cursor:pointer}
+.sound:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.spec{margin:0;display:grid;grid-template-columns:auto 1fr;gap:.6rem 1.6rem;padding-top:1rem;border-top:1px solid var(--line);font:400 .82rem/1.4 var(--f-mono)}
+.spec dt{letter-spacing:.18em;text-transform:uppercase;color:var(--soft);font-size:.66rem;padding-top:.15rem}
+.spec dd{margin:0}
+.steps-inline{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:.4rem}
+.steps-inline li{font:500 .64rem/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;padding:.55rem .7rem;border:1px solid var(--line);background:rgba(255,255,255,.5)}
+.steps-inline li+li::before{content:"→ ";color:var(--soft)}
+.tri{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}
+.tri .t{display:flex;flex-direction:column;gap:.8rem}
+.tri .t .poster{aspect-ratio:9/16;overflow:hidden;box-shadow:0 20px 50px rgba(40,30,20,.14)}
+.tri .t .poster img{width:100%;height:100%;object-fit:cover}
+.tri .t>span{font:500 .62rem/1 var(--f-mono);letter-spacing:.22em;text-transform:uppercase;color:var(--soft)}
+.tri .t b{font:400 1.6rem/1.1 var(--f-display);font-weight:400}
+.tri .t p{margin:0;font:300 .9rem/1.5 var(--f-body);color:var(--soft)}
+@media (max-width:820px){.tri{grid-template-columns:minmax(0,1fr)}.tri .t .poster{max-width:280px}}
+
+/* metodología */
+.method{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;position:relative}
+.method .m{position:relative;display:flex;flex-direction:column;gap:.7rem;padding:1.4rem 1.4rem 1.4rem 0;border-top:2px solid var(--ink)}
+.method .m::before{content:"";position:absolute;top:-8px;left:0;width:14px;height:14px;border-radius:50%;background:var(--ink)}
+.method .m.gate::after{content:"";position:absolute;top:-9px;right:-1px;width:2px;height:16px;background:var(--gold)}
+.method .m>span{font:500 .62rem/1 var(--f-mono);letter-spacing:.22em;text-transform:uppercase;color:var(--soft)}
+.method b{font:400 1.6rem/1.1 var(--f-display);font-weight:400}
+.method ul{margin:0;padding-left:1rem;font:300 .92rem/1.55 var(--f-body);color:var(--soft)}
+.method .ok{align-self:flex-start;font:500 .6rem/1 var(--f-mono);letter-spacing:.18em;text-transform:uppercase;background:var(--gold);color:var(--petrol);padding:.45rem .6rem}
+@media (max-width:820px){.method{grid-template-columns:minmax(0,1fr);gap:1.6rem}}
+
+/* calendario y packs */
+.week{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
+.day{display:flex;flex-direction:column;gap:3px;padding:.5rem;background:rgba(255,255,255,.55);border:1px solid var(--line);min-width:0}
+.day small{font:500 .58rem/1 var(--f-mono);letter-spacing:.14em;color:var(--soft);margin-bottom:.2rem}
+.day i{display:block;height:10px}
+.day .v{height:18px;background:var(--petrol);display:flex;align-items:center;justify-content:center;font:500 .5rem/1 var(--f-mono);letter-spacing:.1em;color:var(--beige);font-style:normal}
+.c1{background:var(--coral-2)}.c2{background:var(--butter-2)}.c3{background:var(--sky-2)}
+.keyrow{display:flex;flex-wrap:wrap;gap:1rem;font:500 .62rem/1.2 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--soft)}
+.keyrow span{display:inline-flex;align-items:center;gap:.4rem}
+.keyrow i{width:14px;height:10px;display:inline-block}
+.packs{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:1.4rem;align-items:stretch}
+.pack{display:flex;flex-direction:column;gap:1rem;padding:1.6rem;border:1px solid var(--line);background:#fff}
+.pack .price{display:flex;align-items:baseline;gap:.6rem}
+.pack .price b{font:400 clamp(2.8rem,5vw,4.2rem)/1 var(--f-display);font-weight:400;font-variant-numeric:tabular-nums}
+.pack .price span{font:500 .7rem/1 var(--f-mono);letter-spacing:.2em;text-transform:uppercase;color:var(--soft)}
+.pack table{width:100%;border-collapse:collapse;font:400 .82rem/1.35 var(--f-mono)}
+.pack th{text-align:left;font:500 .58rem/1 var(--f-mono);letter-spacing:.18em;text-transform:uppercase;color:var(--soft);padding:.5rem .4rem;border-bottom:1px solid var(--ink)}
+.pack td{padding:.6rem .4rem;border-bottom:1px solid var(--line);vertical-align:top}
+.seal{position:relative;display:flex;flex-direction:column;justify-content:center;gap:.8rem;padding:1.8rem;background:var(--petrol);color:var(--beige)}
+.seal .badge{position:absolute;top:-16px;right:18px;width:92px;height:92px;border-radius:50%;background:var(--gold);color:var(--petrol);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;font:500 .56rem/1.2 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;transform:rotate(-10deg);box-shadow:0 10px 24px rgba(0,0,0,.25)}
+.seal .badge b{font:400 1.5rem/1 var(--f-display);letter-spacing:0}
+.seal .price b{font:400 clamp(2.8rem,5vw,4.2rem)/1 var(--f-display);font-weight:400}
+.seal .price span{font:500 .7rem/1 var(--f-mono);letter-spacing:.2em;text-transform:uppercase;opacity:.75}
+.seal ul{margin:0;padding-left:1rem;font:300 .95rem/1.55 var(--f-body)}
+@media (max-width:860px){.packs{grid-template-columns:minmax(0,1fr)}.week{grid-template-columns:repeat(7,minmax(36px,1fr))}}
+.inout{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.4rem}
+.inout div{display:flex;flex-direction:column;gap:.7rem;padding:1.4rem;border:1px solid var(--line)}
+.inout h3{margin:0;font:400 1.6rem/1.1 var(--f-display)}
+.inout ul{margin:0;padding-left:1.1rem;display:flex;flex-direction:column;gap:.45rem;font:300 .95rem/1.5 var(--f-body);color:var(--soft)}
+.inout .out{background:rgba(13,29,33,.04)}
+@media (max-width:760px){.inout{grid-template-columns:minmax(0,1fr)}}
+
+.wnav .wlinks a{color:var(--beige);text-decoration:none}.wnav .wlinks a:hover{text-decoration:underline}
+.hero-copy .wcta{align-self:flex-start;font:500 1cqw/1 var(--f-mono);letter-spacing:.3em;text-transform:uppercase;border:1px solid #3F3418;padding:1.2cqw 2cqw;color:#3F3418;text-decoration:none;position:relative;z-index:6}
+.hero-copy .wcta:hover{background:#3F3418;color:#F4EACB}
+.w-pcopy dd a{color:inherit}
+.w-btn{color:#EADFC8;text-decoration:none}.w-btn:hover{background:#EADFC8;color:#0D1D21}
+.hero-copy{z-index:6}
+
+/* full-bleed slides: image fills the screen, text sits on top, no overlays */
+.slide.fullbleed{position:relative;padding:0;min-height:100svh;background:var(--warm)}
+.fb-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.fb-panels{position:absolute;inset:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));z-index:0}
+.fb-panels img{width:100%;height:100%;object-fit:cover;object-position:center 60%}
+.fb-inner{position:relative;z-index:1;min-height:100svh;justify-content:center;padding:calc(64px + 2.5rem) var(--gutter) 3rem;max-width:none}
+.fb-col{width:min(40%,540px);display:flex;flex-direction:column;gap:1.4rem;color:var(--ink)}
+.fb-col .lead-xl{color:#3F3418}
+.fb-col .stats{border-top-color:rgba(42,40,38,.25)}
+.fb-legend{position:absolute;right:0;bottom:16px;width:50%;text-align:center;z-index:1;color:var(--ink)}
+.fb-bottom{justify-content:flex-end}
+.fb-card{width:min(100%,980px);display:flex;flex-direction:column;gap:1.2rem;padding:1.6rem 1.8rem;background:var(--warm)}
+#strategy .pillars div{background:transparent;border:0;border-top:1px solid rgba(31,44,53,.25);padding:.8rem 0}
+@media (max-width:820px){
+  .slide.fullbleed{display:flex;flex-direction:column;gap:1.2rem;min-height:auto;padding:calc(64px + 2rem) var(--gutter) 2.5rem}
+  .slide.fullbleed .fb-inner,.slide.fullbleed .fb-col,.slide.fullbleed .fb-card{display:contents}
+  .slide.fullbleed .fb-col>*,.slide.fullbleed .fb-card>*{order:5}
+  .slide.fullbleed .fb-col>.tag,.slide.fullbleed .fb-card>.tag{order:1}
+  .slide.fullbleed .fb-col>h1,.slide.fullbleed .fb-col>h2,.slide.fullbleed .fb-card>h2{order:2}
+  .slide.fullbleed .fb-img,.slide.fullbleed .fb-panels{order:3;position:static;width:calc(100% + 2 * var(--gutter));max-width:none;margin:0 calc(-1 * var(--gutter));height:auto;object-fit:contain}
+  .slide.fullbleed .fb-panels{display:grid;grid-template-columns:repeat(5,minmax(0,1fr))}
+  .slide.fullbleed .fb-panels img{height:auto;object-fit:contain}
+  .slide.fullbleed .fb-legend{order:4;position:static;width:auto;text-align:left;margin-top:-.6rem}
+  #strategy.slide.fullbleed{background:#E4ECF1}
+  #intro.slide.fullbleed{background:var(--butter)}
+  .theme-slide .inner.split{display:flex;flex-direction:column;align-items:stretch;gap:1.4rem}
+  .theme-slide .split>div:not(.vphone){display:contents!important}
+  .theme-slide .split>div>*{order:5}
+  .theme-slide .split>div>.tag{order:1}
+  .theme-slide .split>div>h2{order:2}
+  .theme-slide .vphone{order:3}
+  .tri .t .poster{order:3}.tri .t>span{order:1}.tri .t b{order:2}.tri .t p{order:4}
+}
+/* web hero (blue retatrutide) */
+.hero-blue .img{animation:breathe 28s ease-in-out infinite alternate}
+.hero-blue .hero-copy{color:#1F2C35}
+.hero-blue .hero-copy .wcta{color:#1F2C35;border-color:#1F2C35}
+.hero-blue .hero-copy .wcta:hover{background:#1F2C35;color:#DFE7EC}
+.hero-blue .ro{color:#1F2C35}
+
+#intro .h1{font-size:clamp(2.2rem,4vw,4rem)}
+#intro .lead-xl{font-size:clamp(.98rem,1.25vw,1.15rem)}
+#intro .stats{gap:1.6rem;flex-wrap:nowrap}
+#intro .stats b{font-size:clamp(1.8rem,2.6vw,2.6rem)}
+#intro .stats div{max-width:12rem}
+@media (max-width:820px){#intro .stats{flex-wrap:wrap}}
+
+/* 04 · web: texto 1/3 · ventana 2/3 */
+#s04 .inner.s04-grid{max-width:1680px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:clamp(1.6rem,3vw,3rem);align-items:center}
+#s04{padding-top:calc(64px + 1.4rem);padding-bottom:1.4rem}
+.s04-text{display:flex;flex-direction:column;gap:1.1rem}
+.wstage{display:flex;flex-direction:column;gap:.8rem;min-width:0}
+#s04 .browser{width:100%;margin:0}
+#s04 .wview{aspect-ratio:auto;height:max(340px,calc(100svh - 64px - 2.8rem - 78px - 60px))}
+.wctrl{display:flex;justify-content:space-between;align-items:center;gap:1rem;width:100%}
+.wctrl .small{margin:0}
+.wbtns{display:flex;gap:.5rem}
+.wbtns button{all:unset;cursor:pointer;width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--petrol);color:var(--petrol);font:500 1rem/1 var(--f-mono);transition:background .2s,color .2s}
+.wbtns button:hover{background:var(--petrol);color:var(--beige)}
+.wbtns button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+@media (max-width:900px){#s04 .inner.s04-grid{grid-template-columns:minmax(0,1fr)}#s04 .wview{height:auto;aspect-ratio:3/4}}
+/* packs */
+.pack-intro{margin:.2rem 0 0;max-width:72ch;font:300 1rem/1.55 var(--f-body);color:var(--soft)}
+.pack .plabel,.seal .plabel{font:500 .62rem/1 var(--f-mono);letter-spacing:.24em;text-transform:uppercase}
+.pack .plabel{color:var(--soft)}
+.xtra{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:1.4rem}
+.xtra>div{display:flex;flex-direction:column;gap:.7rem;padding:1.4rem 1.6rem;border:1px solid var(--line);background:#fff}
+.xtra .xg{background:var(--butter)}
+.xtra .plabel{font:500 .62rem/1 var(--f-mono);letter-spacing:.24em;text-transform:uppercase;color:var(--soft)}
+.xtra b{font:400 1.6rem/1.15 var(--f-display);font-weight:400}
+.xtra p{margin:0;font:300 .92rem/1.5 var(--f-body);color:var(--soft)}
+.xtra .price{display:flex;align-items:baseline;gap:.8rem;flex-wrap:wrap}
+.xtra .price b{font:400 clamp(2.2rem,4vw,3.2rem)/1 var(--f-display)}
+.xtra .price>span{font:500 .66rem/1 var(--f-mono);letter-spacing:.2em;text-transform:uppercase;color:var(--soft)}
+.xcols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.2rem;border-top:1px solid var(--line);padding-top:.8rem}
+.xcols small{display:block;margin-bottom:.3rem;font:500 .6rem/1 var(--f-mono);letter-spacing:.2em;text-transform:uppercase;color:var(--ink)}
+@media (max-width:900px){.xtra,.xcols{grid-template-columns:minmax(0,1fr)}}
+.xtra .xtitle{font:400 1.9rem/1 var(--f-display);letter-spacing:.14em;text-transform:uppercase}
+.dl{align-self:flex-start;display:inline-flex;align-items:center;gap:.4rem;margin-top:.3rem;padding:.7rem 1rem;min-height:44px;box-sizing:border-box;background:var(--petrol);color:var(--beige);text-decoration:none;font:500 .66rem/1 var(--f-mono);letter-spacing:.2em;text-transform:uppercase}
+.dl:hover{background:#1c3238}
+.dl:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.invest{display:flex;flex-direction:column;gap:1rem}
+.invest table{width:100%;border-collapse:collapse;background:rgba(255,255,255,.6);font:300 .92rem/1.4 var(--f-body)}
+.invest th{text-align:left;font:500 .6rem/1 var(--f-mono);letter-spacing:.18em;text-transform:uppercase;color:var(--soft);padding:.8rem .8rem;border-bottom:1px solid var(--ink)}
+.invest td{padding:.85rem .8rem;border-bottom:1px solid var(--line);vertical-align:top}
+.invest td:first-child{font:400 1.25rem/1.15 var(--f-display);white-space:nowrap}
+.invest td:last-child{font:400 .74rem/1.45 var(--f-mono);color:var(--soft)}
+.invest td.n{font:400 1.5rem/1.1 var(--f-display);white-space:nowrap;font-variant-numeric:tabular-nums}
+.invest tfoot td{background:var(--petrol);color:var(--beige);border:0}
+.invest tfoot td:first-child{font:500 .66rem/1.3 var(--f-mono);letter-spacing:.2em;text-transform:uppercase}
+.invest tfoot td:last-child{color:rgba(234,223,200,.75)}
+.invest-note{margin:0;max-width:90ch;font:400 .76rem/1.55 var(--f-mono);color:var(--soft)}
+@media (max-width:820px){.invest{overflow-x:auto}.invest table{min-width:640px}}
+.pnote{grid-column:1/-1;display:flex;flex-wrap:wrap;justify-content:space-between;gap:.6rem 2rem;padding:1rem 1.2rem;border:1px solid var(--line);background:#fff;font:400 .8rem/1.45 var(--f-mono)}
+.pnote b{font:400 1.5rem/1 var(--f-display);font-weight:400}
+</style>
+<link rel="preload" as="image" href="assets/img/poster-fondo-0103.jpg" fetchpriority="high">
+</head>
+<body>
+<header class="bar">
+  <img src="assets/img/peptivo-logo.png" alt="PEPTIVO">
+  <div class="langsw" aria-label="Idioma / Language"><button type="button" data-lang="es" aria-pressed="false">ES</button><span aria-hidden="true">/</span><button type="button" data-lang="en" aria-pressed="true">EN</button></div>
+  <div class="meta-bar"><span class="act" id="act"></span><b id="count">01</b></div>
+</header>
+<div class="progress" aria-hidden="true"><i id="prog"></i></div>
+
+<main id="deck">
+
+<!-- =============== PORTADA =============== -->
+<section class="slide cover" data-act-es="Portada" data-act-en="Cover" id="cover">
+  <div class="inner">
+    <img class="logo" src="assets/img/peptivo-logo.png" alt="PEPTIVO">
+    <p class="title"><span class="es">Propuesta para la creación, desarrollo e implementación del sistema de mercadeo en Instagram y TikTok para PEPTIVO.</span><span class="en">Proposal for the creation, development and implementation of the Instagram and TikTok marketing system for PEPTIVO.</span></p>
+    <div class="lang-row"><span><span class="es">Idioma</span><span class="en">Language</span></span>
+      <div class="langsw"><button type="button" data-lang="es" aria-pressed="false">Español</button><span aria-hidden="true">/</span><button type="button" data-lang="en" aria-pressed="true">English</button></div>
+    </div>
+    <div class="rows">
+      <div><span><span class="es">Cliente</span><span class="en">Client</span></span><b>PEPTIVO · Colombia</b></div>
+      <div><span><span class="es">Alcance</span><span class="en">Scope</span></span><b><span class="es">Identidad, contenidos, producción mensual</span><span class="en">Identity, content, monthly production</span></b></div>
+      <div><span><span class="es">Canales</span><span class="en">Channels</span></span><b>Instagram · TikTok · Web · Google</b></div>
+      <div><span><span class="es">Fecha</span><span class="en">Date</span></span><b><span class="es">Octubre 2026</span><span class="en">October 2026</span></b></div>
+    </div>
+  </div>
+</section>
+
+<!-- =============== INTRODUCCIÓN =============== -->
+<section class="slide fullbleed" data-act-es="Introducción" data-act-en="Introduction" id="intro">
+  <img class="fb-img" src="assets/img/reta-butter.webp" alt="Vial PEPTIVO Retatrutide sobre base de piedra con hélice molecular, en tono mantequilla" style="object-position:100% 50%">
+  <span class="legend fb-legend"><span class="es">Solo para fines de investigación</span><span class="en">For research purposes only</span></span>
+  <div class="inner fb-inner">
+    <div class="fb-col">
+      <p class="tag"><span class="es">Introducción</span><span class="en">Introduction</span></p>
+      <h1 class="h1"><span class="es">De catálogo a sistema de comunicación.</span><span class="en">From catalog to communication system.</span></h1>
+      <p class="lead-xl"><span class="es">PEPTIVO vende hoy como una tienda en línea: producto aislado sobre blanco. Esta propuesta construye un sistema de mercadeo en tres medios —Instagram, TikTok y la web con posicionamiento en Google— con identidad visual, tres líneas de contenido, producción mensual y un método de prueba.</span><span class="en">Today PEPTIVO sells like an online store: an isolated product on white. This proposal builds a marketing system across three media —Instagram, TikTok and the website with Google search positioning— with a visual identity, three content lines, monthly production and a testing method.</span></p>
+      <div class="stats">
+        <div><b>3</b><span><span class="es">Medios: Instagram · TikTok · Google</span><span class="en">Media: Instagram · TikTok · Google</span></span></div>
+        <div><b>3</b><span><span class="es">Temas de contenido</span><span class="en">Content themes</span></span></div>
+        <div><b>30</b><span><span class="es">Días por ciclo</span><span class="en">Days per cycle</span></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============== INVESTIGACIÓN =============== -->
+<section class="slide pearl" data-act-es="Investigación" data-act-en="Research" id="research">
+  <div class="inner">
+    <div style="display:flex;flex-direction:column;gap:1rem"><p class="tag"><span class="es">Conclusiones de la investigación</span><span class="en">Research findings</span></p><h2 class="h2"><span class="es">Una audiencia amplia. Un comprador calificado.</span><span class="en">A broad audience. A qualified buyer.</span></h2></div>
+    <div class="cols2">
+      <div class="panel"><h3><span class="es">Audiencia de contenido</span><span class="en">Content audience</span></h3>
+        <ul class="es"><li>Público curioso de la ciencia: sigue divulgación, podcasts y estética de marca.</li><li>No es comprador; es quien da alcance, guarda y comparte.</li><li>Se le habla con datos verificables y lenguaje claro, nunca con promesas de uso.</li></ul>
+        <ul class="en"><li>Science-curious public: follows science communication, podcasts and brand aesthetics.</li><li>Not a buyer; drives reach, saves and shares.</li><li>Addressed with verifiable data and clear language, never with promises of use.</li></ul>
+      </div>
+      <div class="panel"><h3><span class="es">Comprador</span><span class="en">Buyer</span></h3>
+        <ul class="es"><li>Investigadores, laboratorios, docentes y estudiantes de investigación, compras institucionales.</li><li>Decide por pureza, lote y certificado de análisis (COA).</li><li>Compra material in vitro; no apto para uso humano ni veterinario.</li></ul>
+        <ul class="en"><li>Researchers, laboratories, research faculty and students, institutional procurement.</li><li>Decides on purity, lot and certificate of analysis (COA).</li><li>Buys in-vitro material; not for human or veterinary use.</li></ul>
+      </div>
+    </div>
+    <p class="verdict"><span class="es">El contenido atrae a muchos. La venta se cierra con quien investiga.</span><span class="en">Content attracts many. The sale closes with those who research.</span></p>
+  </div>
+</section>
+
+<!-- =============== ESTILO GRÁFICO =============== -->
+<section class="slide fullbleed" data-act-es="Estilo gráfico" data-act-en="Visual style" id="style">
+  <div class="fb-panels" aria-hidden="true"><img src="assets/img/col-1.webp" alt=""><img src="assets/img/col-2.webp" alt=""><img src="assets/img/col-3.webp" alt=""><img src="assets/img/col-4.webp" alt=""><img src="assets/img/col-5.webp" alt=""></div>
+  <div class="inner fb-inner fb-bottom">
+    <div class="fb-card">
+      <p class="tag"><span class="es">Definición del estilo gráfico</span><span class="en">Visual style</span></p>
+      <h2 class="h2"><span class="es">Belleza en la imagen. Ciencia en el texto.</span><span class="en">Beauty in the image. Science in the text.</span></h2>
+      <ul class="rules3">
+        <li><b><span class="es">Vial acompañado</span><span class="en">Never alone</span></b><span><span class="es">El producto siempre en escena, nunca aislado.</span><span class="en">The product always in a scene, never isolated.</span></span></li>
+        <li><b><span class="es">Un color, un elemento</span><span class="en">One color, one element</span></b><span><span class="es">Fondo sólido de marca y un elemento natural por producto.</span><span class="en">A solid brand background and one natural element per product.</span></span></li>
+        <li><b><span class="es">Molécula como firma</span><span class="en">Molecule as signature</span></b><span><span class="es">Infografía limpia con datos verificables.</span><span class="en">A clean infographic with verifiable data.</span></span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- =============== ESTRATEGIA =============== -->
+<section class="slide fullbleed" data-act-es="Estrategia" data-act-en="Strategy" id="strategy">
+  <img class="fb-img" src="assets/img/reta-blue.webp" alt="Vial PEPTIVO Retatrutide sobre base de piedra con hélice molecular, en tono cielo" style="object-position:100% 50%">
+  <span class="legend fb-legend"><span class="es">Solo para fines de investigación</span><span class="en">For research purposes only</span></span>
+  <div class="inner fb-inner">
+    <div class="fb-col" style="color:#1F2C35">
+      <p class="tag" style="color:#3D4E5B"><span class="es">Estrategia de mercadeo</span><span class="en">Marketing strategy</span></p>
+      <h2 class="h2"><span class="es">Se ve como belleza. Se lee como ciencia.</span><span class="en">It looks like beauty. It reads like science.</span></h2>
+      <div class="pillars">
+        <div><span><span class="es">Visual</span><span class="en">Visual</span></span><b><span class="es">Detiene el scroll</span><span class="en">Stops the scroll</span></b><p><span class="es">Lenguaje visual del cuidado de la salud y la belleza en Instagram y TikTok.</span><span class="en">The visual language of health care and beauty on Instagram and TikTok.</span></p></div>
+        <div><span><span class="es">Texto</span><span class="en">Text</span></span><b><span class="es">Da confianza</span><span class="en">Builds trust</span></b><p><span class="es">Solo datos científicos y funcionales: fórmula, peso molecular, lote, COA.</span><span class="en">Only scientific, functional data: formula, molecular weight, lot, COA.</span></p></div>
+        <div><span>Web</span><b><span class="es">Captura la búsqueda</span><span class="en">Captures search</span></b><p><span class="es">Posicionamiento en Google (SEO) y resultados patrocinados donde la política lo permita.</span><span class="en">Google positioning (SEO) and sponsored results where policy allows.</span></p></div>
+        <div><span><span class="es">Identidad</span><span class="en">Identity</span></span><b><span class="es">Colombia en el color</span><span class="en">Colombia in color</span></b><p><span class="es">El tricolor en pastel, sin clichés.</span><span class="en">The tricolor in pastel, no clichés.</span></p></div>
+      </div>
+      <p class="h2" style="font-size:clamp(1.6rem,3vw,2.4rem)">Precision you can verify.</p>
+    </div>
+  </div>
+</section>
+
+<!-- =============== 01–03 · VIDEO FIJO DE FONDO =============== -->
+<section class="pinned" id="pinned" aria-label="Recorrido del usuario">
+  <div class="pin-bg">
+    <video id="scrubVideo" class="pin-full" src="assets/video/fondo-0103-scrub.mp4" poster="assets/img/poster-fondo-0103.jpg" muted playsinline preload="auto" aria-label="Usuario en su celular: feed, producto, web y compra / User on a phone: feed, product, website and purchase"></video>
+    <span class="legend pin-legend"><span class="es">Solo para fines de investigación</span><span class="en">For research purposes only</span></span>
+  </div>
+  <div class="pin-dots" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
+  <div class="pin-steps">
+    <div class="pin-step slide-like" data-act-es="01 · Resultado" data-act-en="01 · Result" id="s01">
+      <div class="col">
+        <p class="tag">01 · <span class="es">El resultado</span><span class="en">The result</span></p>
+        <h2 class="h1" style="font-size:clamp(2.4rem,4.6vw,4.4rem)"><span class="es">Un usuario. Un scroll. Una compra.</span><span class="en">One user. One scroll. One purchase.</span></h2>
+        <video class="pin-m" data-from="0" data-to="3.35" src="assets/video/fondo-0103-scrub.mp4" poster="assets/img/poster-fondo-0103.jpg" muted playsinline preload="metadata" aria-hidden="true"></video><span class="legend pin-cap pin-m-cap"><span class="es">Solo para fines de investigación</span><span class="en">For research purposes only</span></span>
+        <ol class="steps">
+          <li><div><b><span class="es">Navega su feed</span><span class="en">Scrolls the feed</span></b><span><span class="es">Contenido de terceros, saturado de color y movimiento.</span><span class="en">Third-party content, saturated with color and motion.</span></span></div></li>
+          <li><div><b><span class="es">Se detiene</span><span class="en">Stops</span></b><span><span class="es">Un video de PEPTIVO: color pleno, producto en escena.</span><span class="en">A PEPTIVO video: solid color, product in a scene.</span></span></div></li>
+          <li><div><b><span class="es">Entra al perfil</span><span class="en">Opens the profile</span></b><span><span class="es">Encuentra tres temas con funciones distintas.</span><span class="en">Finds three themes with different roles.</span></span></div></li>
+          <li><div><b><span class="es">Hace clic</span><span class="en">Clicks</span></b><span><span class="es">Del enlace del perfil, o desde una búsqueda en Google, a la web.</span><span class="en">From the profile link, or from a Google search, to the website.</span></span></div></li>
+          <li><div><b><span class="es">Compra</span><span class="en">Buys</span></b><span><span class="es">Catálogo con COA, lote y precio de primera compra.</span><span class="en">Catalog with COA, lot and first-purchase price.</span></span></div></li>
+        </ol>
+      </div>
+    </div>
+    <div class="pin-step slide-like" data-act-es="02 · El feed" data-act-en="02 · The feed" id="s02">
+      <div class="col">
+        <p class="tag">02 · <span class="es">El feed</span><span class="en">The feed</span></p>
+        <h2 class="h2"><span class="es">Tres temas. Tres funciones.</span><span class="en">Three themes. Three roles.</span></h2>
+        <video class="pin-m" data-from="3.35" data-to="6.7" src="assets/video/fondo-0103-scrub.mp4" poster="assets/img/poster-fondo-0103.jpg" muted playsinline preload="metadata" aria-hidden="true"></video><span class="legend pin-cap pin-m-cap"><span class="es">Solo para fines de investigación</span><span class="en">For research purposes only</span></span>
+        <p class="lead"><span class="es">Un feed de un solo formato pierde al usuario en el segundo video. Cada tema cumple una función distinta en la decisión de compra.</span><span class="en">A single-format feed loses the user by the second video. Each theme plays a different role in the purchase decision.</span></p>
+        <div class="themes3">
+          <div><span><span class="es">Convierte</span><span class="en">Converts</span></span><div><b><span class="es">Producto y precio</span><span class="en">Product and price</span></b><p><span class="es">Vial, molécula, precio y 15% en la primera compra.</span><span class="en">Vial, molecule, price and 15% off the first purchase.</span></p></div></div>
+          <div><span><span class="es">Recordación</span><span class="en">Recall</span></span><div><b><span class="es">Moda científica</span><span class="en">Scientific fashion</span></b><p><span class="es">Imagen editorial de alto nivel: construye marca.</span><span class="en">High-end editorial imagery: builds the brand.</span></p></div></div>
+          <div><span><span class="es">Autoridad</span><span class="en">Authority</span></span><div><b>Podcast</b><p><span class="es">Diálogo sobre la investigación de cada molécula.</span><span class="en">Dialogue on the research behind each molecule.</span></p></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="pin-step slide-like" data-act-es="03 · La pieza" data-act-en="03 · The piece" id="s03">
+      <div class="col">
+        <p class="tag">03 · <span class="es">La pieza que vende</span><span class="en">The piece that sells</span></p>
+        <h2 class="h2"><span class="es">Seis partes en diez segundos.</span><span class="en">Six parts in ten seconds.</span></h2>
+        <video class="pin-m" data-from="6.7" data-to="10" src="assets/video/fondo-0103-scrub.mp4" poster="assets/img/poster-fondo-0103.jpg" muted playsinline preload="metadata" aria-hidden="true"></video><span class="legend pin-cap pin-m-cap"><span class="es">Solo para fines de investigación</span><span class="en">For research purposes only</span></span>
+        <ul class="anat">
+          <li><span>01</span><div><b><span class="es">Vial</span><span class="en">Vial</span></b><p><span class="es">Siempre acompañado, nunca solo.</span><span class="en">Always accompanied, never alone.</span></p></div></li>
+          <li><span>02</span><div><b><span class="es">Molécula</span><span class="en">Molecule</span></b><p><span class="es">Firma científica que se arma en pantalla.</span><span class="en">A scientific signature assembled on screen.</span></p></div></li>
+          <li><span>03</span><div><b><span class="es">Nombre y presentación</span><span class="en">Name and size</span></b><p><span class="es">Nombre científico, mg y lote.</span><span class="en">Scientific name, mg and lot.</span></p></div></li>
+          <li><span>04</span><div><b><span class="es">Precio e incentivo</span><span class="en">Price and incentive</span></b><p><span class="es">Lista y −15% en la primera compra.</span><span class="en">List price and −15% on the first purchase.</span></p></div></li>
+          <li><span>05</span><div><b><span class="es">Llamado a la acción</span><span class="en">Call to action</span></b><p><span class="es">Un solo destino: la web.</span><span class="en">One destination: the website.</span></p></div></li>
+          <li><span>06</span><div><b><span class="es">Advertencia</span><span class="en">Disclaimer</span></b><p><span class="es">«Solo para fines de investigación».</span><span class="en">“For research purposes only”.</span></p></div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============== 04 · LA WEB =============== -->
+<section class="slide butter" data-act-es="04 · La web" data-act-en="04 · Website" id="s04">
+  <div class="inner s04-grid">
+    <div class="s04-text">
+      <p class="tag">04 · <span class="es">El destino</span><span class="en">The destination</span></p>
+      <h2 class="h2"><span class="es">La web: donde se compra.</span><span class="en">The website: where people buy.</span></h2>
+      <p class="lead"><span class="es">Todo el recorrido termina aquí: catálogo, certificado de análisis por lote y contacto.</span><span class="en">The whole journey ends here: catalog, certificate of analysis per lot and contact.</span></p>
+      <p class="small" style="margin:0"><span class="es">La web también es un medio: posicionamiento orgánico en Google (SEO) y resultados patrocinados (SEM), sujetos a la política de Google para productos regulados.</span><span class="en">The website is also a medium: organic Google positioning (SEO) and sponsored results (SEM), subject to Google's policy for regulated products.</span></p>
+    </div>
+    <div class="wstage">
+    <div class="browser">
+      <div class="chrome"><i></i><i></i><i></i><span>peptivo.co</span></div>
+      <div class="wnav"><img src="assets/img/peptivo-logo.png" alt=""><span class="wlinks"><a href="#w-cat">CATALOG</a> · <a href="https://www.peptivo.co/análisis-coa" target="_blank" rel="noopener">COA</a> · <a href="#w-foot">CONTACT</a></span></div>
+      <div class="wview" tabindex="0" aria-label="Web de PEPTIVO, desplazable">
+      <div class="wpage">
+      <div class="hero-art hero-blue">
+        <div class="img"><img class="plate" src="assets/img/reta-blue.webp" alt="Vial PEPTIVO Retatrutide 10 MG sobre base de piedra, con hélice molecular y datos técnicos"></div>
+        <div class="hero-copy"><small>Research peptides · Colombia</small><strong>PEPTIVO</strong><span>Synthetic peptides<br>for laboratory research</span><a class="wcta" href="#w-cat">View catalog</a></div>
+        <span class="legend ro">Solo para fines de investigación</span>
+        <span class="scroll-hint" aria-hidden="true">Scroll ↓</span>
+      </div>
+
+      <!-- catálogo -->
+      <section class="w-sec w-cat" id="w-cat">
+        <div class="w-head"><span class="w-eye">Catalog</span><h3 class="w-h">Five peptides. One analytical standard.</h3><p class="w-p">Each compound is identified by name, presentation and lot, and is backed by its certificate of analysis.</p></div>
+        <div class="w-grid">
+          <a class="w-card" href="https://www.peptivo.co/product-page/tirzepatide-10mg" target="_blank" rel="noopener"><div class="w-img"><img src="assets/img/col-1.webp" alt="Tirzepatide 10 mg"></div><div class="w-meta"><b>TIRZEPATIDE</b><span>10 MG · $ 142.000</span></div></a>
+          <a class="w-card" href="https://www.peptivo.co/product-page/bpc-157-10mg" target="_blank" rel="noopener"><div class="w-img"><img src="assets/img/col-2.webp" alt="BPC-157 10 mg"></div><div class="w-meta"><b>BPC-157</b><span>10 MG · $ 142.000</span></div></a>
+          <a class="w-card" href="https://www.peptivo.co/product-page/ghk-cu-50-mg" target="_blank" rel="noopener"><div class="w-img"><img src="assets/img/col-3.webp" alt="GHK-CU 50 mg"></div><div class="w-meta"><b>GHK-CU</b><span>50 MG · $ 300.000</span></div></a>
+          <a class="w-card" href="https://www.peptivo.co/product-page/tesamorelin-10mg" target="_blank" rel="noopener"><div class="w-img"><img src="assets/img/col-4.webp" alt="Tesamorelin 10 mg"></div><div class="w-meta"><b>TESAMORELIN</b><span>10 MG · $ 250.000</span></div></a>
+          <a class="w-card" href="https://www.peptivo.co/product-page/exotic-plants-subscription" target="_blank" rel="noopener"><div class="w-img"><img src="assets/img/col-5.webp" alt="Retatrutide 10 mg"></div><div class="w-meta"><b>RETATRUTIDE</b><span>10 MG · $ 250.000</span></div></a>
+        </div>
+        <span class="w-ro">For research use only · Not for human or veterinary use</span>
+      </section>
+
+      <!-- pureza -->
+      <section class="w-pur">
+        <img src="assets/img/purity.webp" alt="Vial GHK-CU flotando con plato, esfera de agua y tarro">
+        <div class="w-pcopy">
+          <span class="w-eye">Purity</span>
+          <h3 class="w-h">Purity, measured.</h3>
+          <dl><dt>Purity</dt><dd>[≥ XX % · HPLC]</dd><dt>Identity</dt><dd>[Mass spectrometry]</dd><dt>Lot</dt><dd>[No.]</dd><dt>COA</dt><dd><a href="https://www.peptivo.co/análisis-coa" target="_blank" rel="noopener">View certificate</a></dd></dl>
+        </div>
+      </section>
+
+      <!-- trazabilidad -->
+      <section class="w-sec w-trace">
+        <div class="w-head"><span class="w-eye">Traceability</span><h3 class="w-h">Every lot. Documented.</h3><p class="w-p">Every lot is tested before release. Each certificate states the analytical method, the result and the laboratory that issued it.</p></div>
+        <ol class="w-steps"><li><b>Synthesis</b><span>Lot assigned</span></li><li><b>Analysis</b><span>HPLC · MS</span></li><li><b>Certificate</b><span>COA per lot</span></li><li><b>Release</b><span>Lot on label</span></li></ol>
+      </section>
+
+      <!-- solo investigación -->
+      <section class="w-ro-band">
+        <span class="w-eye">Research only</span>
+        <h3 class="w-h">For research purposes only.</h3>
+        <p class="w-p">Peptivo compounds are intended exclusively for in-vitro laboratory research. They are not drugs, supplements or cosmetics, and are not for human or veterinary use.</p>
+      </section>
+
+      <!-- pie -->
+      <footer class="w-foot" id="w-foot">
+        <img src="assets/img/peptivo-logo.png" alt="PEPTIVO">
+        <strong>Precision you can verify.</strong>
+        <a class="w-btn" href="https://www.peptivo.co/contacto" target="_blank" rel="noopener">Contact</a>
+        <small>© 2026 PEPTIVO · Research use only · Not for human consumption</small>
+      </footer>
+      </div>
+      </div>
+    </div>
+    <div class="wctrl">
+      <p class="small"><span class="es">Navegable: desplázate dentro de la ventana y haz clic en los enlaces.</span><span class="en">Live: scroll inside the window and click the links.</span></p>
+      <div class="wbtns"><button type="button" data-wscroll="-1" aria-label="Subir en la web / Scroll the website up">↑</button><button type="button" data-wscroll="1" aria-label="Bajar en la web / Scroll the website down">↓</button></div>
+    </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============== MANUAL =============== -->
+<section class="slide" data-act-es="Manual de identidad" data-act-en="Identity guide" id="manual">
+  <div class="inner">
+    <div style="display:flex;flex-direction:column;gap:1rem"><p class="tag"><span class="es">Manual de identidad de la campaña</span><span class="en">Campaign identity guide</span></p><h2 class="h2"><span class="es">El sistema que sostiene cada pieza.</span><span class="en">The system behind every piece.</span></h2><a class="dl" href="assets/docs/PEPTIVO-Manual-de-identidad.pdf" download><span aria-hidden="true">↓</span> <span class="es">Descargar manual (PDF)</span><span class="en">Download guide (PDF)</span></a></div>
+    <div class="palette">
+      <div style="background:var(--butter)"><span class="es">Mantequilla</span><span class="en">Butter</span><br>#F4EACB</div>
+      <div style="background:var(--sky)"><span class="es">Cielo</span><span class="en">Sky</span><br>#DFE7EC</div>
+      <div style="background:var(--coral)">Coral<br>#F2E0D9</div>
+      <div style="background:var(--pearl)"><span class="es">Perla</span><span class="en">Pearl</span><br>#EEECE8</div>
+      <div style="background:var(--gold)"><span class="es">Oro</span><span class="en">Gold</span><br>#D8B82C</div>
+      <div style="background:var(--petrol);color:var(--beige)"><span class="es">Petróleo</span><span class="en">Petrol</span><br>#0D1D21</div>
+      <div style="background:var(--beige)">Beige<br>#EADFC8</div>
+    </div>
+    <div class="types">
+      <div><span class="aa" style="font-family:var(--f-display)">Aa</span><span class="small"><span class="es">Italiana · Títulos</span><span class="en">Italiana · Headlines</span></span></div>
+      <div><span class="aa" style="font-family:var(--f-body);font-weight:300">Aa</span><span class="small"><span class="es">Jost · Textos y botones</span><span class="en">Jost · Body and buttons</span></span></div>
+      <div><span class="aa" style="font-family:var(--f-mono)">Aa</span><span class="small"><span class="es">IBM Plex Mono · Datos técnicos</span><span class="en">IBM Plex Mono · Technical data</span></span></div>
+    </div>
+    <div class="cols2">
+      <div class="panel"><h3><span class="es">Eslogan</span><span class="en">Slogan</span></h3><p class="h2" style="font-size:clamp(1.8rem,3.2vw,2.6rem);margin:0">Precision you can verify.</p></div>
+      <div class="panel"><h3><span class="es">Cómo son las imágenes</span><span class="en">How images look</span></h3>
+        <ul class="es"><li>Fondo infinito de un color sólido de marca.</li><li>Vial acompañado, un elemento natural, molécula infográfica.</li><li>Leyenda «Solo para fines de investigación» en toda pieza.</li></ul>
+        <ul class="en"><li>Seamless sweep in one solid brand color.</li><li>Vial in a scene, one natural element, infographic molecule.</li><li>“For research purposes only” on every piece.</li></ul>
+      </div>
+    </div>
+    <div class="rules">
+      <span class="no"><span class="es">Sin personas en piezas de producto</span><span class="en">No people in product pieces</span></span><span class="no"><span class="es">Sin jeringas ni consumo</span><span class="en">No syringes or consumption</span></span><span class="no"><span class="es">Sin beneficios ni dosis</span><span class="en">No benefits or dosing</span></span><span class="no"><span class="es">Sin testimonios</span><span class="en">No testimonials</span></span>
+    </div>
+  </div>
+</section>
+
+<!-- =============== TRES TEMAS =============== -->
+<section class="slide pearl" data-act-es="La campaña" data-act-en="The campaign" id="themes">
+  <div class="inner">
+    <div style="display:flex;flex-direction:column;gap:1rem"><p class="tag"><span class="es">La campaña en producción</span><span class="en">The campaign in production</span></p><h2 class="h2"><span class="es">Tres temas. Un mismo sistema.</span><span class="en">Three themes. One system.</span></h2></div>
+    <div class="tri">
+      <div class="t"><div class="poster"><img src="assets/img/poster-precio.jpg" alt=""></div><span><span class="es">Convierte</span><span class="en">Converts</span></span><b><span class="es">Producto y precio</span><span class="en">Product and price</span></b><p><span class="es">Venta directa: precio, descuento de primera compra y enlace.</span><span class="en">Direct sales: price, first-purchase discount and link.</span></p></div>
+      <div class="t"><div class="poster"><img src="assets/img/poster-fabrica.jpg" alt=""></div><span><span class="es">Recordación</span><span class="en">Recall</span></span><b><span class="es">Moda científica</span><span class="en">Scientific fashion</span></b><p><span class="es">Lenguaje editorial de lujo: producción, materia y forma.</span><span class="en">Luxury editorial language: production, matter and form.</span></p></div>
+      <div class="t"><div class="poster"><img src="assets/img/poster-podcast.jpg" alt=""></div><span><span class="es">Autoridad</span><span class="en">Authority</span></span><b>Podcast</b><p><span class="es">Diálogo sobre la investigación de cada molécula.</span><span class="en">Dialogue on the research behind each molecule.</span></p></div>
+    </div>
+    <p class="small"><span class="es">Comparten paleta, tipografía y reglas: se leen como una sola marca.</span><span class="en">They share palette, type and rules: they read as one brand.</span></p>
+  </div>
+</section>
+
+<!-- =============== TEMA 1 =============== -->
+<section class="slide coral theme-slide" data-act-es="Tema 1" data-act-en="Theme 1" id="t1">
+  <div class="inner split">
+    <div style="display:flex;flex-direction:column;gap:1.4rem">
+      <p class="tag"><span class="es">Tema 1 · Convierte</span><span class="en">Theme 1 · Converts</span></p>
+      <h2 class="h2"><span class="es">Producto y precio.</span><span class="en">Product and price.</span></h2>
+      <p class="lead"><span class="es">La pieza de venta directa: el producto, su molécula, el precio y el incentivo de primera compra, en un solo recorrido.</span><span class="en">The direct-sales piece: the product, its molecule, the price and the first-purchase incentive in one sequence.</span></p>
+      <ul class="steps-inline"><li><span class="es">Vial en base</span><span class="en">Vial on base</span></li><li><span class="es">Molécula</span><span class="en">Molecule</span></li><li><span class="es">Nombre · mg</span><span class="en">Name · mg</span></li><li><span class="es">Precio −15%</span><span class="en">Price −15%</span></li><li>CTA</li></ul>
+      <dl class="spec"><dt><span class="es">Duración</span><span class="en">Length</span></dt><dd>10 s</dd><dt><span class="es">Formato</span><span class="en">Format</span></dt><dd>9:16 · 1080×1920</dd><dt><span class="es">Uso</span><span class="en">Use</span></dt><dd>Reels · TikTok · Stories</dd></dl>
+    </div>
+    <div class="vphone"><div class="screen"><div class="notch"></div><video src="assets/video/precio.mp4" poster="assets/img/poster-precio.jpg" autoplay muted playsinline></video></div><button class="sound" type="button">Sonido</button></div>
+  </div>
+</section>
+
+<!-- =============== TEMA 2 =============== -->
+<section class="slide butter theme-slide" data-act-es="Tema 2" data-act-en="Theme 2" id="t2">
+  <div class="inner split rev">
+    <div class="vphone"><div class="screen"><div class="notch"></div><video src="assets/video/fabrica.mp4" poster="assets/img/poster-fabrica.jpg" autoplay muted playsinline></video></div><button class="sound" type="button">Sonido</button></div>
+    <div style="display:flex;flex-direction:column;gap:1.4rem">
+      <p class="tag"><span class="es">Tema 2 · Recordación</span><span class="en">Theme 2 · Recall</span></p>
+      <h2 class="h2"><span class="es">Moda científica.</span><span class="en">Scientific fashion.</span></h2>
+      <p class="lead"><span class="es">La producción contada como una campaña de moda: primerísimos planos, zonas monocromáticas por color de marca y un cierre con la colección completa.</span><span class="en">Production told as a fashion campaign: extreme close-ups, monochrome zones per brand color and a closing shot of the full collection.</span></p>
+      <ul class="steps-inline"><li><span class="es">Lavado</span><span class="en">Washing</span></li><li><span class="es">Liofilización</span><span class="en">Freeze-drying</span></li><li><span class="es">Sellado</span><span class="en">Sealing</span></li><li><span class="es">Etiquetado</span><span class="en">Labeling</span></li><li><span class="es">Colección</span><span class="en">Collection</span></li></ul>
+      <dl class="spec"><dt><span class="es">Duración</span><span class="en">Length</span></dt><dd>10 s</dd><dt><span class="es">Formato</span><span class="en">Format</span></dt><dd>9:16 · 1080×1920</dd><dt><span class="es">Uso</span><span class="en">Use</span></dt><dd>Reels · TikTok · <span class="es">Perfil</span><span class="en">Profile</span></dd></dl>
+    </div>
+  </div>
+</section>
+
+<!-- =============== TEMA 3 =============== -->
+<section class="slide theme-slide" data-act-es="Tema 3" data-act-en="Theme 3" id="t3">
+  <div class="inner split">
+    <div style="display:flex;flex-direction:column;gap:1.4rem">
+      <p class="tag"><span class="es">Tema 3 · Autoridad</span><span class="en">Theme 3 · Authority</span></p>
+      <h2 class="h2">Podcast.</h2>
+      <p class="lead"><span class="es">Dos panelistas en un estudio de marca conversan sobre la investigación de cada molécula. En redes circula un video promocional de 10 segundos que lleva al episodio.</span><span class="en">Two hosts in a branded studio discuss the research behind each molecule. A 10-second promotional video runs on social and leads to the episode.</span></p>
+      <ul class="steps-inline"><li><span class="es">Tema</span><span class="en">Topic</span></li><li><span class="es">Dato verificable</span><span class="en">Verifiable fact</span></li><li><span class="es">Ver completo en el link</span><span class="en">Full episode in the link</span></li></ul>
+      <dl class="spec"><dt><span class="es">Duración</span><span class="en">Length</span></dt><dd><span class="es">10 s (video promocional)</span><span class="en">10 s (promotional video)</span></dd><dt><span class="es">En el pack</span><span class="en">In the pack</span></dt><dd><span class="es">Solo los videos promocionales. El episodio completo se cotiza aparte: USD 150 por minuto; duración recomendada 15 min (USD 2.250)</span><span class="en">Promotional videos only. The full episode is quoted separately: USD 150 per minute; recommended length 15 min (USD 2,250)</span></dd><dt><span class="es">Formato</span><span class="en">Format</span></dt><dd>9:16 · 1080×1920</dd><dt><span class="es">Regla</span><span class="en">Rule</span></dt><dd><span class="es">Investigación y evidencia; sin beneficios, dosis ni testimonios</span><span class="en">Research and evidence; no benefits, dosing or testimonials</span></dd></dl>
+    </div>
+    <div class="vphone"><div class="screen"><div class="notch"></div><video src="assets/video/podcast-en.mp4" poster="assets/img/poster-podcast-en.jpg" data-src-en="assets/video/podcast-en.mp4" data-src-es="assets/video/podcast.mp4" data-poster-en="assets/img/poster-podcast-en.jpg" data-poster-es="assets/img/poster-podcast.jpg" autoplay muted playsinline></video></div><button class="sound" type="button">Sonido</button></div>
+  </div>
+</section>
+
+<!-- =============== METODOLOGÍA =============== -->
+<section class="slide" data-act-es="Metodología" data-act-en="Method" id="method">
+  <div class="inner">
+    <div style="display:flex;flex-direction:column;gap:1rem"><p class="tag"><span class="es">Metodología de trabajo</span><span class="en">Working method</span></p><h2 class="h2"><span class="es">Definir, probar, producir.</span><span class="en">Define, test, produce.</span></h2></div>
+    <div class="method">
+      <div class="m gate"><span><span class="es">Etapa 1</span><span class="en">Stage 1</span></span><b><span class="es">Definición</span><span class="en">Definition</span></b>
+        <ul class="es"><li>Estructura de contenidos de cada pieza.</li><li>Estilo visual, conceptual y tipográfico.</li></ul>
+        <ul class="en"><li>Content structure for each piece.</li><li>Visual, conceptual and typographic style.</li></ul>
+        <span class="ok"><span class="es">Aprobación del cliente</span><span class="en">Client approval</span></span></div>
+      <div class="m"><span><span class="es">Etapa 2</span><span class="en">Stage 2</span></span><b><span class="es">Producción de prueba</span><span class="en">Test production</span></b>
+        <ul class="es"><li>Un video de cada tema.</li><li>Una imagen de cada tema.</li></ul>
+        <ul class="en"><li>One video per theme.</li><li>One image per theme.</li></ul></div>
+      <div class="m"><span><span class="es">Etapa 3</span><span class="en">Stage 3</span></span><b><span class="es">Mes de prueba</span><span class="en">Test month</span></b>
+        <ul class="es"><li>Publicación durante un mes.</li><li>Medición y ajuste antes de la producción mensual.</li></ul>
+        <ul class="en"><li>One month of publishing.</li><li>Measurement and adjustment before monthly production.</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- =============== FASES · VOLUMEN · PACKS =============== -->
+<section class="slide pearl" data-act-es="Propuesta" data-act-en="Proposal" id="packs">
+  <div class="inner">
+    <div style="display:flex;flex-direction:column;gap:1rem"><p class="tag"><span class="es">Fases, calendario y volumen</span><span class="en">Phases, calendar and volume</span></p><h2 class="h2"><span class="es">Una semana de publicación.</span><span class="en">One week of publishing.</span></h2><p class="pack-intro"><span class="es">Cada mes inicia con la definición de temas y piezas, con dos rondas de revisión antes de generar imágenes o videos. Luego se produce el material y se publica según este calendario semanal; al cierre del mes se mide y se ajusta el siguiente ciclo.</span><span class="en">Each month starts by defining themes and pieces, with two revision rounds before any image or video is generated. The material is then produced and published on this weekly calendar; at month end, results are measured and the next cycle is adjusted.</span></p></div>
+    <div class="week" id="week"></div>
+    <div class="keyrow"><span><i class="c2"></i><span class="es">Producto y precio</span><span class="en">Product and price</span></span><span><i class="c1"></i><span class="es">Moda científica</span><span class="en">Scientific fashion</span></span><span><i class="c3"></i>Podcast</span><span><i style="background:var(--petrol)"></i><span class="es">Video semanal</span><span class="en">Weekly video</span></span></div>
+    <div class="packs">
+      <div class="pack">
+        <span class="plabel">Pack 1</span>
+        <div class="price"><b>USD 500</b><span><span class="es">/ mes</span><span class="en">/ month</span></span></div>
+        <table>
+          <thead><tr><th><span class="es">Entregable</span><span class="en">Deliverable</span></th><th><span class="es">Cantidad</span><span class="en">Quantity</span></th><th><span class="es">Especificación</span><span class="en">Spec</span></th></tr></thead>
+          <tbody>
+            <tr><td><span class="es">Imágenes</span><span class="en">Images</span></td><td><span class="es">3 diarias, una por tema · ~90 al mes</span><span class="en">3 daily, one per theme · ~90 a month</span></td><td>4:5 · 1080×1350</td></tr>
+            <tr><td><span class="es">Videos</span><span class="en">Videos</span></td><td><span class="es">1 por semana · 4 al mes (2 promocionales de podcast)</span><span class="en">1 per week · 4 a month (2 podcast promos)</span></td><td><span class="es">10 s c/u · 9:16</span><span class="en">10 s each · 9:16</span></td></tr>
+            <tr><td><span class="es">Pauta</span><span class="en">Paid media</span></td><td><span class="es">Meta · TikTok · Google Ads</span><span class="en">Meta · TikTok · Google Ads</span></td><td><span class="es">Presupuesto aparte</span><span class="en">Separate budget</span></td></tr>
+            <tr><td><span class="es">Revisiones</span><span class="en">Revisions</span></td><td><span class="es">2 rondas</span><span class="en">2 rounds</span></td><td><span class="es">Antes de generar imágenes o videos</span><span class="en">Before generating images or videos</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="seal">
+        <span class="plabel">Pack 2</span>
+        <div class="price"><b>USD 800</b> <span><span class="es">/ mes</span><span class="en">/ month</span></span></div>
+        <ul class="es"><li>Imágenes: 6 diarias · ~180 al mes · 4:5.</li><li>Videos: 2 por semana · 8 al mes (4 promocionales de podcast) · 10 s · 9:16.</li><li>Revisiones: 2 rondas, antes de generar imágenes o videos.</li><li>Pauta: presupuesto aparte.</li></ul>
+        <ul class="en"><li>Images: 6 daily · ~180 a month · 4:5.</li><li>Videos: 2 per week · 8 a month (4 podcast promos) · 10 s · 9:16.</li><li>Revisions: 2 rounds, before generating images or videos.</li><li>Paid media: separate budget.</li></ul>
+      </div>
+      <div class="xtra">
+        <div class="xg"><span class="plabel"><span class="es">Obsequio con la propuesta</span><span class="en">Complimentary with the proposal</span></span><b><span class="es">Manual de identidad de la campaña</span><span class="en">Campaign identity guide</span></b><p><span class="es">El manual en PDF se entrega como obsequio junto con esta propuesta.</span><span class="en">The PDF guide is delivered at no cost together with this proposal.</span></p><a class="dl" href="assets/docs/PEPTIVO-Manual-de-identidad.pdf" download><span aria-hidden="true">↓</span> <span class="es">Descargar PDF</span><span class="en">Download PDF</span></a></div>
+        <div class="xw"><span class="plabel"><span class="es">Proyecto aparte · no incluido en los packs</span><span class="en">Separate project · not included in the packs</span></span>
+          <b class="xtitle"><span class="es">Página web</span><span class="en">Website</span></b>
+          <div class="price"><b><span class="es">USD 1.900</span><span class="en">USD 1,900</span></b><span><span class="es">Sitio web, todo incluido</span><span class="en">Website, all-inclusive</span></span></div>
+          <div class="xcols">
+            <div><small><span class="es">Incluye</span><span class="en">Includes</span></small><p><span class="es">Diseño, contenido, imágenes, videos y puesta en servicio.</span><span class="en">Design, content, images, videos and launch.</span></p></div>
+            <div><small><span class="es">No incluye</span><span class="en">Excludes</span></small><p><span class="es">Servidor, seguridad del carrito de compras, dominio, mantenimiento ni otros servicios recurrentes.</span><span class="en">Hosting, shopping-cart security, domain, maintenance or other recurring services.</span></p></div>
+          </div>
+        </div>
+      </div>
+      <div class="pnote"><span><span class="es">Los packs incluyen solo los videos promocionales de 10 s del podcast, no el episodio completo.</span><span class="en">Packs include only the 10-second podcast promotional videos, not the full episode.</span></span><span><span class="es">Episodio completo de podcast</span><span class="en">Full podcast episode</span> · <b>USD 150</b> <span class="es">por minuto · duración recomendada 15 min (USD 2.250)</span><span class="en">per minute · recommended length 15 min (USD 2,250)</span></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- =============== INCLUYE / NO INCLUYE =============== -->
+<section class="slide" data-act-es="Alcance" data-act-en="Scope" id="scope">
+  <div class="inner">
+    <div style="display:flex;flex-direction:column;gap:1rem"><p class="tag"><span class="es">Qué incluye y qué no</span><span class="en">What is and isn’t included</span></p><h2 class="h2"><span class="es">Lo que no está en el pack se cotiza aparte.</span><span class="en">Anything outside the pack is quoted separately.</span></h2></div>
+    <div class="inout">
+      <div><h3><span class="es">Incluye</span><span class="en">Included</span></h3>
+        <ul class="es"><li>Las imágenes y videos del pack, con su cantidad, duración y formato.</li><li>Guiones y textos de cada pieza.</li><li>Videos promocionales de 10 s del podcast (no el episodio completo).</li><li>2 rondas de revisión, antes de generar imágenes o videos.</li><li>Manual de identidad en PDF, como obsequio con la propuesta.</li></ul>
+        <ul class="en"><li>The pack’s images and videos, with their quantity, length and format.</li><li>Scripts and copy for each piece.</li><li>10-second podcast promotional videos (not the full episode).</li><li>2 revision rounds, before generating images or videos.</li><li>Identity guide in PDF, complimentary with the proposal.</li></ul></div>
+      <div class="out"><h3><span class="es">Se cobra aparte</span><span class="en">Charged separately</span></h3>
+        <ul class="es"><li>Sitio web: USD 1.900, todo incluido (diseño, contenido, imágenes, videos y puesta en servicio); sin servidor, seguridad del carrito, dominio ni mantenimiento.</li><li>Pauta en medios: Meta, TikTok y Google Ads (resultados patrocinados). Ver inversión mínima estimada.</li><li>Posicionamiento orgánico de la web en Google (SEO).</li><li><span class="ph">[Publicación y gestión de cuentas]</span></li><li>Episodios completos de podcast: USD 150 por minuto.</li><li>Piezas adicionales o de mayor duración.</li><li>Revisiones extra o cambios después de generar imágenes o videos.</li><li>Fotografía o video con producto físico.</li></ul>
+        <ul class="en"><li>Website: USD 1,900, all-inclusive (design, content, images, videos and launch); excludes hosting, cart security, domain and maintenance.</li><li>Paid media: Meta, TikTok and Google Ads (sponsored results). See estimated minimum investment.</li><li>Organic Google positioning of the website (SEO).</li><li><span class="ph">[Publishing and account management]</span></li><li>Full podcast episodes: USD 150 per minute.</li><li>Additional or longer pieces.</li><li>Extra revisions or changes after images or videos are generated.</li><li>Photography or video with the physical product.</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- =============== INVERSIÓN EN MEDIOS (APARTE) =============== -->
+<section class="slide sky" data-act-es="Inversión en medios" data-act-en="Media investment" id="invest">
+  <div class="inner">
+    <div style="display:flex;flex-direction:column;gap:1rem"><p class="tag"><span class="es">Inversión en medios · totalmente aparte de los packs</span><span class="en">Media investment · entirely separate from the packs</span></p><h2 class="h2"><span class="es">Lo mínimo para empezar a aparecer.</span><span class="en">The minimum to start showing up.</span></h2>
+      <p class="pack-intro"><span class="es">Estimación de inversión mínima mensual por canal, con referencias de mercado 2026. No está incluida en los packs: se paga directamente a cada plataforma o especialista.</span><span class="en">Estimated minimum monthly investment per channel, based on 2026 market references. It is not included in the packs: it is paid directly to each platform or specialist.</span></p></div>
+    <div class="invest">
+      <table>
+        <thead><tr><th><span class="es">Canal</span><span class="en">Channel</span></th><th><span class="es">Qué es</span><span class="en">What it is</span></th><th><span class="es">Mínimo / mes</span><span class="en">Minimum / month</span></th><th><span class="es">Referencia</span><span class="en">Reference</span></th></tr></thead>
+        <tbody>
+          <tr><td>SEO</td><td><span class="es">Posicionamiento orgánico de la web en Google.</span><span class="en">Organic Google positioning of the website.</span></td><td class="n">USD 900</td><td><span class="es">COP 3–8 M/mes, empresa de alcance nacional</span><span class="en">COP 3–8 M/month, national-scope company</span></td></tr>
+          <tr><td>AEO · GEO</td><td><span class="es">Aparecer en respuestas de IA: ChatGPT, Gemini, Perplexity, AI Overviews.</span><span class="en">Showing up in AI answers: ChatGPT, Gemini, Perplexity, AI Overviews.</span></td><td class="n">USD 1.000</td><td><span class="es">Nivel de entrada: USD 1.000–3.500/mes</span><span class="en">Entry tier: USD 1,000–3,500/month</span></td></tr>
+          <tr><td>SEM · Google Ads</td><td><span class="es">Pago por aparecer en resultados de búsqueda.</span><span class="en">Paying to appear in search results.</span></td><td class="n">USD 300</td><td><span class="es">CPC en Colombia: USD 0,50–4,00</span><span class="en">CPC in Colombia: USD 0.50–4.00</span></td></tr>
+          <tr><td>Instagram · Meta Ads</td><td><span class="es">Promoción de publicaciones y videos.</span><span class="en">Promoting posts and videos.</span></td><td class="n">USD 750</td><td><span class="es">COP 2,5–8 M/mes, e-commerce de ticket medio</span><span class="en">COP 2.5–8 M/month, mid-ticket e-commerce</span></td></tr>
+          <tr><td>TikTok Ads</td><td><span class="es">Promoción de videos.</span><span class="en">Promoting videos.</span></td><td class="n">USD 600</td><td><span class="es">Mínimo de la plataforma: USD 20 diarios por grupo de anuncios</span><span class="en">Platform minimum: USD 20 a day per ad group</span></td></tr>
+          <tr><td><span class="es">Gestión de pauta</span><span class="en">Ad management</span></td><td><span class="es">Configuración, optimización y reportes.</span><span class="en">Setup, optimization and reporting.</span></td><td class="n">USD 150</td><td><span class="es">COP 0,5–2 M/mes, especialista independiente</span><span class="en">COP 0.5–2 M/month, independent specialist</span></td></tr>
+        </tbody>
+        <tfoot><tr><td colspan="2"><span class="es">Mínimo combinado estimado</span><span class="en">Estimated combined minimum</span></td><td class="n"><span class="es">≈ USD 3.700</span><span class="en">≈ USD 3,700</span></td><td><span class="es">TRM 1-oct-2026: COP 3.313</span><span class="en">FX 1-Oct-2026: COP 3,313</span></td></tr></tfoot>
+      </table>
+      <p class="invest-note"><span class="es">Toda pauta está sujeta a la aprobación de cada plataforma. Google, Meta y TikTok restringen anuncios de sustancias no aprobadas: nombres de compuestos o descripciones de efectos causan rechazo, y la leyenda «Solo para fines de investigación» no garantiza la aprobación. Por eso la pauta se plantea con piezas de marca y la web como destino.</span><span class="en">All paid media is subject to each platform's approval. Google, Meta and TikTok restrict ads for unapproved substances: compound names or effect descriptions lead to rejection, and the “For research purposes only” legend does not guarantee approval. Paid media is therefore planned with brand pieces and the website as the destination.</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- =============== CIERRE =============== -->
+<section class="slide dark close" data-act-es="Cierre" data-act-en="Closing" id="close">
+  <div class="inner" style="align-items:center">
+    <img class="logo" src="assets/img/peptivo-logo.png" alt="PEPTIVO">
+    <p class="tag"><span class="es">Siguiente paso</span><span class="en">Next step</span></p>
+    <h2 class="h2"><span class="es">Aprobar la etapa 1 e iniciar la definición.</span><span class="en">Approve stage 1 and start the definition.</span></h2>
+    <div class="contact">
+      <div><span><span class="es">Director creativo</span><span class="en">Creative director</span></span><b><span class="ph">[Nombre]</span></b></div>
+      <div><span><span class="es">Correo</span><span class="en">Email</span></span><b><span class="ph">[correo@dominio]</span></b></div>
+      <div><span>WhatsApp</span><b><span class="ph">[+57 …]</span></b></div>
+    </div>
+    <div class="links">
+      <a href="https://www.peptivo.co" target="_blank" rel="noopener">peptivo.co</a>
+      <a href="https://www.peptivo.co/category/all-products" target="_blank" rel="noopener"><span class="es">Catálogo actual</span><span class="en">Current catalog</span></a>
+      <a href="https://www.peptivo.co/análisis-coa" target="_blank" rel="noopener"><span class="es">Análisis COA</span><span class="en">COA analysis</span></a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<script>
+/* ---------- idioma ---------- */
+(function(){
+  var root=document.documentElement;
+  function setLang(l){
+    root.lang=l;
+    document.querySelectorAll('[data-lang]').forEach(function(b){b.setAttribute('aria-pressed',b.getAttribute('data-lang')===l?'true':'false');});
+    document.querySelectorAll('.sound').forEach(function(b){var v=b.parentNode.querySelector('video');b.textContent=(v&&!v.muted)?(l==='es'?'Silenciar':'Mute'):(l==='es'?'Sonido':'Sound');});
+    try{localStorage.setItem('peptivo-lang-v2',l);}catch(e){}
+    document.querySelectorAll('video[data-src-en]').forEach(function(v){var want=v.getAttribute(l==='en'?'data-src-en':'data-src-es');if(v.getAttribute('src')!==want){var play=!v.paused;v.setAttribute('src',want);v.setAttribute('poster',v.getAttribute(l==='en'?'data-poster-en':'data-poster-es'));v.load();if(play)v.play().catch(function(){});}});
+    if(window.__updAct)window.__updAct();
+  }
+  document.querySelectorAll('[data-lang]').forEach(function(b){b.addEventListener('click',function(){setLang(b.getAttribute('data-lang'));});});
+  var saved='en'; try{saved=localStorage.getItem('peptivo-lang-v2')||'en';}catch(e){}
+  setLang(saved);
+  window.__setLang=setLang;
+})();
+
+/* ---------- navegación: acto, contador, progreso ---------- */
+(function(){
+  var items=[].slice.call(document.querySelectorAll('.slide, .slide-like'));
+  var act=document.getElementById('act'), count=document.getElementById('count'), prog=document.getElementById('prog');
+  var current=0, total=items.length;
+  function pad(n){return (n<10?'0':'')+n;}
+  function upd(){var s=items[current];var l=document.documentElement.lang==='en'?'en':'es';act.textContent=s.getAttribute('data-act-'+l)||'';count.textContent=pad(current+1)+' / '+pad(total);prog.style.width=((current+1)/total*100)+'%';}
+  window.__updAct=upd;
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){current=items.indexOf(e.target);upd();}});},{rootMargin:'-45% 0px -45% 0px'});
+  items.forEach(function(s){io.observe(s);});
+  document.addEventListener('keydown',function(e){
+    var t=e.target; if(t&&(t.tagName==='INPUT'||t.tagName==='TEXTAREA'||(t.closest&&t.closest('.wview'))))return;
+    if(e.key==='ArrowDown'||e.key==='PageDown'){e.preventDefault();items[Math.min(current+1,total-1)].scrollIntoView({behavior:'smooth'});}
+    if(e.key==='ArrowUp'||e.key==='PageUp'){e.preventDefault();items[Math.max(current-1,0)].scrollIntoView({behavior:'smooth'});}
+  });
+  upd();
+})();
+
+/* ---------- video fijo que avanza y retrocede con el scroll (01–03), en su proporción original ---------- */
+(function(){
+  var sec=document.getElementById('pinned'), v=document.getElementById('scrubVideo');
+  var dots=[].slice.call(document.querySelectorAll('.pin-dots i'));
+  var mq=window.matchMedia('(max-width:820px)');
+  var minis=[].slice.call(document.querySelectorAll('video.pin-m')).map(function(m){return {v:m,from:+m.getAttribute('data-from'),to:+m.getAttribute('data-to')};});
+  var ticking=false;
+  function seek(el,t){if(el.readyState>=1&&el.duration){t=Math.min(Math.max(0,t),el.duration-0.05);if(Math.abs(el.currentTime-t)>0.03)el.currentTime=t;}}
+  function render(){
+    var vh=window.innerHeight;
+    if(mq.matches){
+      minis.forEach(function(o){var r=o.v.getBoundingClientRect();if(r.bottom<-200||r.top>vh+200)return;var p=Math.min(1,Math.max(0,(vh-r.top)/(vh+r.height)));seek(o.v,o.from+p*(o.to-o.from));});
+    }else{
+      var r=sec.getBoundingClientRect(), p=Math.min(1,Math.max(0,(-r.top)/(r.height-vh)));
+      if(v.duration)seek(v,p*v.duration);
+      var i=Math.min(dots.length-1,Math.floor(p*dots.length));dots.forEach(function(d,k){d.classList.toggle('on',k===i);});
+    }
+  }
+  function update(){if(!ticking){ticking=true;requestAnimationFrame(function(){ticking=false;render();});}}
+  [v].concat(minis.map(function(o){return o.v;})).forEach(function(el){el.addEventListener('loadedmetadata',update);if(el.readyState<1)el.load();});
+  window.addEventListener('scroll',update,{passive:true});
+  window.addEventListener('resize',update);
+  update();
+})();
+
+/* ---------- web navegable: enlaces internos dentro del módulo ---------- */
+(function(){
+  document.querySelectorAll('.browser').forEach(function(br){
+    var view=br.querySelector('.wview');
+    br.addEventListener('click',function(e){
+      var a=e.target.closest('a'); if(!a)return;
+      var h=a.getAttribute('href')||'';
+      if(h.charAt(0)==='#'){e.preventDefault();var t=view.querySelector(h);if(t)view.scrollTo({top:t.offsetTop,behavior:'smooth'});}
+    });
+  });
+  document.querySelectorAll('[data-wscroll]').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var st=btn.closest('.wstage'); var view=st&&st.querySelector('.wview'); if(!view)return;
+      view.scrollBy({top:parseFloat(btn.getAttribute('data-wscroll'))*view.clientHeight*0.8,behavior:'smooth'});
+    });
+  });
+})();
+
+/* ---------- sonido de los videos de demo ---------- */
+(function(){
+  document.querySelectorAll('.sound').forEach(function(b){
+    b.addEventListener('click',function(){
+      var v=b.parentNode.querySelector('video'); if(!v)return;
+      document.querySelectorAll('.vphone video').forEach(function(o){if(o!==v)o.muted=true;});
+      v.muted=!v.muted; if(!v.muted){v._done=false;v.closest('.vphone').classList.remove('ended');v.currentTime=0;v.play();}
+      window.__setLang(document.documentElement.lang);
+    });
+  });
+  var vids=[].slice.call(document.querySelectorAll('.vphone video'));
+  vids.forEach(function(v){
+    var ph=v.closest('.vphone');
+    var rb=document.createElement('button'); rb.type='button'; rb.className='replay';
+    rb.innerHTML='<span aria-hidden="true">↺</span><span class="es">Volver a ver</span><span class="en">Watch again</span>';
+    ph.appendChild(rb);
+    v.addEventListener('ended',function(){v._done=true;ph.classList.add('ended');});
+    v.addEventListener('emptied',function(){v._done=false;ph.classList.remove('ended');});
+    rb.addEventListener('click',function(){v._done=false;ph.classList.remove('ended');v.currentTime=0;v.play().catch(function(){});});
+  });
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){var v=e.target;if(e.isIntersecting){if(!v._done)v.play().catch(function(){});}else{v.pause();v.muted=true;}});window.__setLang(document.documentElement.lang);},{threshold:.3});
+  vids.forEach(function(v){io.observe(v);});
+})();
+
+/* ---------- semana tipo ---------- */
+(function(){
+  var es=['Lun','Mar','Mié','Jue','Vie','Sáb','Dom'], en=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+  var vids={1:'POD',3:'VID',5:'POD'};
+  var html='';
+  for(var i=0;i<7;i++){
+    html+='<div class="day"><small><span class="es">'+es[i]+'</span><span class="en">'+en[i]+'</span></small><i class="c2"></i><i class="c1"></i><i class="c3"></i>'+(i===3?'<em class="v">VIDEO</em>':'')+'</div>';
+  }
+  document.getElementById('week').innerHTML=html;
+})();
+</script>
+
+</body>
+</html>

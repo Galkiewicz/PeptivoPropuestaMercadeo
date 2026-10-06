@@ -1,0 +1,18 @@
+PEPTIVO · Propuesta de mercadeo (presentación web)
+
+Abrir: index.html en Chrome, Safari o Edge. Idioma por defecto: inglés (botón ES/EN).
+
+Carpetas:
+  assets/fonts  tipografías (Italiana, Jost, IBM Plex Mono)
+  assets/img    imágenes y cuadros de portada de los videos
+  assets/docs   PEPTIVO-Manual-de-identidad.pdf (descargable desde la presentación)
+  assets/video
+      fondo-0103-scrub.mp4  fondo de las láminas 01–03 (avanza y retrocede con el scroll)
+      precio.mp4            Tema 1 · Producto y precio
+      fabrica.mp4           Tema 2 · Moda científica
+      podcast-en.mp4        Tema 3 · Podcast con subtítulos en inglés
+      podcast.mp4           Tema 3 · Podcast (versión en español)
+
+Para cambiar un video, reemplaza el archivo con el mismo nombre.
+El fondo de 01–03 está codificado con todos los cuadros clave para avanzar
+suave con el scroll; si lo cambias, pide la versión "-scrub".
